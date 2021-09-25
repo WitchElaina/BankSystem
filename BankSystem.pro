@@ -21,6 +21,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     account.cpp \
+    register.cpp \
     withdrawdialog.cpp
 
 HEADERS += \
@@ -29,11 +30,13 @@ HEADERS += \
     date.h \
     login.h \
     mainwindow.h \
+    register.h \
     withdrawdialog.h
 
 FORMS += \
     login.ui \
     mainwindow.ui \
+    register.ui \
     withdrawdialog.ui
 
 TRANSLATIONS += \

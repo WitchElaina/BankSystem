@@ -1,6 +1,8 @@
 #include "register.h"
 #include "ui_register.h"
 
+#include <QDebug>
+
 Register::Register(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Register)
@@ -11,4 +13,16 @@ Register::Register(QWidget *parent) :
 Register::~Register()
 {
     delete ui;
+}
+
+void Register::on_usrnameEdit_textChanged(const QString &arg1)
+{
+    username=arg1;
+    qDebug()<<"input username:"<<username;
+}
+
+void Register::on_pwdEdit_textChanged(const QString &arg1)
+{
+    password=arg1;
+    qDebug()<<"input password:"<<password;
 }

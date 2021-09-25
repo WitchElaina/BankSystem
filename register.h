@@ -14,6 +14,14 @@ class Register : public QDialog
 public:
     explicit Register(QWidget *parent = nullptr);
     ~Register();
+    QString username;
+    QString password;
+    QHash<QString,QString> usr_hash;
+
+private slots:
+    void on_usrnameEdit_textChanged(const QString &arg1);
+
+    void on_pwdEdit_textChanged(const QString &arg1);
 
 private:
     Ui::Register *ui;
