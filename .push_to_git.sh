@@ -1,3 +1,3 @@
 git add ./
 git commit -m "Add files"
-git push git@github:LinYuanChan/BankSystem.git
+git push git@github.com:LinYuanChan/BankSystem.git
