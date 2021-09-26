@@ -2,6 +2,7 @@
 #define REGISTER_H
 
 #include <QDialog>
+#include <QHash>
 
 namespace Ui {
 class Register;
@@ -22,6 +23,8 @@ private slots:
     void on_usrnameEdit_textChanged(const QString &arg1);
 
     void on_pwdEdit_textChanged(const QString &arg1);
+
+    void on_buttonBox_accepted();
 
 private:
     Ui::Register *ui;

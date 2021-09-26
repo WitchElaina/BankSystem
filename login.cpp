@@ -127,9 +127,14 @@ void LogIn::on_userPassword_textChanged()
     qDebug()<<"password edited:"<<password;
 }
 
-void LogIn::on_logIn_clicked()
+void LogIn::on_userPassword_textChanged(QString const& arg)
 {
 
+}
+
+void LogIn::on_logIn_clicked()
+{
+    qDebug()<<"start resgister";
 }
 
 void LogIn::on_userRegister_clicked()
@@ -137,4 +142,12 @@ void LogIn::on_userRegister_clicked()
     qDebug()<<"start resgister";
     Register *res_ui=new Register;
     res_ui->exec();
+}
+
+void LogIn::on_forgotPassword_clicked()
+{
+    qDebug()<<"forgot password";
+    QMessageBox msgBox;
+    msgBox.setText("Developing...Couldn't use the function now.");
+    msgBox.exec();
 }

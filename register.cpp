@@ -3,6 +3,7 @@
 
 #include <QDebug>
 
+
 Register::Register(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Register)
@@ -25,4 +26,10 @@ void Register::on_pwdEdit_textChanged(const QString &arg1)
 {
     password=arg1;
     qDebug()<<"input password:"<<password;
+}
+
+void Register::on_buttonBox_accepted()
+{
+    // press the register button
+    qDebug()<<"Submit the username and password\nUsername: "<<username<<"\nPassword: "<<password;
 }
