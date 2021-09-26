@@ -19,6 +19,8 @@ public:
     QString password;
     QHash<QString,QString> usr_hash;
 
+    bool findUsername(QString m_usrname);
+
 private slots:
     void on_usrnameEdit_textChanged(const QString &arg1);
 
