@@ -37,7 +37,7 @@ bool LogIn::findUsername(QString m_usrname)
     bool isOpened;
 
     // check if the UserData file is opened correctly
-    isOpened=usr_data.open(QIODevice::ReadOnly);
+    isOpened=usr_data.open(QIODevice::ReadWrite);
     if(!isOpened)
     {
         throw "Error!Can't find UserData!";
@@ -47,10 +47,8 @@ bool LogIn::findUsername(QString m_usrname)
     QHash<QString, QString> finder;
     usr_data_stream>>finder;
     usr_data.close();
-    usr_data.~QFile();
-    usr_data_stream.~QDataStream();
 
-    if(finder.find(m_usrname)!=finder.end()&&finder.end().key()!=m_usrname)
+    if(1)
     {
         // find the input username successfully
         return 1;
@@ -63,13 +61,12 @@ bool LogIn::verifyPassword(QString m_usrname, QString m_password)
 {
     // open user data file in readonly mode
     QFile usr_data("UserData.dat");
-
+    usr_data.open(QIODevice::ReadWrite);
     QDataStream usr_data_stream(&usr_data);
     QHash<QString, QString> finder;
     usr_data_stream>>finder;
     usr_data.close();
-    usr_data.~QFile();
-    usr_data_stream.~QDataStream();
+    qDebug()<<finder.find(m_usrname).value();
 
     // verify the Password
     if(finder.find(m_usrname).value()==m_password)
@@ -134,7 +131,40 @@ void LogIn::on_userPassword_textChanged(QString const& arg)
 
 void LogIn::on_logIn_clicked()
 {
-    qDebug()<<"start resgister";
+    qDebug()<<"start login";
+
+    // verify if username exist
+    qDebug()<<"finding username...";
+    bool username_exist=findUsername(username);
+    if(username_exist)
+    {
+        // find success
+        qDebug()<<"verifying password...";
+        if(verifyPassword(username,password))
+        {
+            // password correct
+            qDebug()<<"password correct";
+            QMessageBox msg;
+            msg.setText("Login successfuly!");
+            msg.exec();
+        }
+        else
+        {
+            // password error
+            qDebug()<<"password error";
+            QMessageBox msg;
+            msg.setText("Password is wrong!");
+            msg.exec();
+        }
+    }
+    else
+    {
+        // username doesn't exist
+        qDebug()<<"cann't find username";
+        QMessageBox msg;
+        msg.setText("User doesn't exist!\nPlease register first.");
+        msg.exec();
+    }
 }
 
 void LogIn::on_userRegister_clicked()

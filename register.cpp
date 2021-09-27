@@ -37,8 +37,7 @@ bool Register::findUsername(QString m_usrname)
     QHash<QString, QString> finder;
     usr_data_stream>>finder;
     usr_data.close();
-    usr_data.~QFile();
-    usr_data_stream.~QDataStream();
+
 
     if(finder.find(m_usrname)!=finder.end()&&finder.end().key()!=m_usrname)
     {
@@ -69,7 +68,7 @@ void Register::on_buttonBox_accepted()
 
     // Judge if the input username already exist
     bool username_exist=0;//findUsername(username);
-    qDebug()<<"1";
+
     if(username_exist)
     {
         qDebug()<<"the input username already exist";
@@ -92,24 +91,29 @@ void Register::on_buttonBox_accepted()
             throw "Error!Can't find UserData!";
         }
 
+
         // create IO device
         QDataStream usr_data_stream(&usr_data);
+        qDebug()<<"create IODevice";
 
-        // creat QHash temp
+        // create QHash temp
         QHash<QString, QString> temp;
+        qDebug()<<"create Qhash";
 
         // copy the original data
         usr_data_stream>>temp;
+        qDebug()<<"copy original data";
 
         // insert new data
         temp.insert(username,password);
+        qDebug()<<"insert new data";
 
         // replace the original QHash data
         usr_data_stream<<temp;
+        qDebug()<<"replace data";
+
 
         usr_data.close();
-        usr_data.~QFile();
-        usr_data_stream.~QDataStream();
     }
 
 }
