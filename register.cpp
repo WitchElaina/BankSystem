@@ -3,7 +3,9 @@
 
 #include <QDebug>
 #include <QFile>
+#include <fstream>
 #include <QMessageBox>
+using namespace std;
 
 
 Register::Register(QWidget *parent) :
@@ -20,32 +22,32 @@ Register::~Register()
 
 bool Register::findUsername(QString m_usrname)
 {
-    // open user data file in readonly mode
-    QFile usr_data("UserData.dat");
-    bool isOpened;
+    // check UserData file
+    QFile usr_data_file("UserData.txt");
+    usr_data_file.open(QIODevice::ReadWrite);
+    usr_data_file.setTextModeEnabled(1);
+    QTextStream usr_data_stream(&usr_data_file);
 
-    // check if the UserData file is opened correctly
-    isOpened=usr_data.open(QIODevice::ReadWrite);
-    if(!isOpened)
+    QString finder;
+
+    do
     {
-        qDebug()<<"Error!Find file error01";
-        throw "Error!Can't find UserData!";
-    }
+        usr_data_stream>>finder;
+        qDebug()<<"finding:"+finder;
+        if(m_usrname==finder)
+        {
+            // find success
+            qDebug()<<"find success";
+            return true;
+        }
+        else
+        {
+            // cannot find
+            qDebug()<<"cannot find";
+        }
+    }while(!finder.isNull());
 
-    qDebug()<<"file opened";
-    QDataStream usr_data_stream(&usr_data);
-    QHash<QString, QString> finder;
-    usr_data_stream>>finder;
-    usr_data.close();
-
-
-    if(finder.find(m_usrname)!=finder.end()&&finder.end().key()!=m_usrname)
-    {
-        // find the input username successfully
-        qDebug()<<"find the input username successfully";
-        return true;
-    }
-    qDebug()<<"cannot find the input username";
+    usr_data_file.close();
     return false;
 }
 
@@ -67,7 +69,7 @@ void Register::on_buttonBox_accepted()
     qDebug()<<"Submit the username and password\nUsername: "<<username<<"\nPassword: "<<password;
 
     // Judge if the input username already exist
-    bool username_exist=0;//findUsername(username);
+    bool username_exist=findUsername(username);
 
     if(username_exist)
     {
@@ -82,38 +84,34 @@ void Register::on_buttonBox_accepted()
         qDebug()<<"Creating new account...";
 
         // open the userdata file
-        QFile usr_data("UserData.dat");
-        bool isOpened=usr_data.open(QIODevice::ReadWrite);
-        if(!isOpened)
-        {
-            // check if the file opened
-            qDebug()<<"Error!Find file error01";
-            throw "Error!Can't find UserData!";
-        }
+        QFile usr_data_file("UserData.txt");
+
 
 
         // create IO device
-        QDataStream usr_data_stream(&usr_data);
-        qDebug()<<"create IODevice";
+        usr_data_file.open(QIODevice::ReadWrite);
+        QTextStream usr_data_stream(&usr_data_file);
+        QString reader;
+        do
+        {
+            usr_data_stream>>reader;
+        }while(!reader.isNull());
 
-        // create QHash temp
-        QHash<QString, QString> temp;
-        qDebug()<<"create Qhash";
+        // create TXT temp
+        usr_data_stream<<username;
+
 
         // copy the original data
-        usr_data_stream>>temp;
-        qDebug()<<"copy original data";
+
 
         // insert new data
-        temp.insert(username,password);
-        qDebug()<<"insert new data";
+
 
         // replace the original QHash data
-        usr_data_stream<<temp;
-        qDebug()<<"replace data";
+        usr_data_file.close();
 
 
-        usr_data.close();
+
     }
 
 }
