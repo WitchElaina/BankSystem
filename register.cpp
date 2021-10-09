@@ -28,7 +28,7 @@ bool Register::findUsername(QString m_usrname)
 {
     // QString filename=QFileDialog::getOpenFileName(this,tr("Select UserData File"));
     // check UserData file
-    QFile usr_data_file("UserData.txt");
+    QFile usr_data_file(USER_DATA_FILE);
     if(usr_data_file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         qDebug()<<"Opened!";
@@ -44,7 +44,7 @@ bool Register::findUsername(QString m_usrname)
         usr_data_stream>>finder;
         qDebug()<<"finding:"+finder;
 
-        if(finder.contains("username:"+username+",password:"))
+        if(finder.contains("username:"+m_usrname+",password:"))
         {        
             // find success
             qDebug()<<"find success";
@@ -106,6 +106,7 @@ void Register::on_buttonBox_accepted()
         QMessageBox msgBox;
         msgBox.setText("用户名包含非法字符!");
         msgBox.exec();
+        return ;
 
     }
 
@@ -116,7 +117,7 @@ void Register::on_buttonBox_accepted()
         QMessageBox msgBox;
         msgBox.setText("密码包含非法字符!");
         msgBox.exec();
-
+        return ;
     }
 
 
@@ -140,7 +141,7 @@ void Register::on_buttonBox_accepted()
         qDebug()<<"Creating new account...";
 
         // open the userdata file
-        QFile usr_data_file("UserData.txt");
+        QFile usr_data_file(USER_DATA_FILE);
 
 
 

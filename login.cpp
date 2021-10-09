@@ -1,8 +1,6 @@
 #include "login.h"
 #include "ui_login.h"
 
-
-
 #include <QObject>
 #include <QMessageBox>
 #include <QDataStream>
@@ -11,7 +9,7 @@
 #include <iostream>
 #include <QDebug>
 
-
+#include "config.h"
 
 using namespace std;
 
@@ -29,54 +27,50 @@ LogIn::~LogIn()
 }
 
 
-
 bool LogIn::findUsername(QString m_usrname)
 {
-    // open user data file in readonly mode
-    QFile usr_data("UserData.dat");
-    bool isOpened;
 
-    // check if the UserData file is opened correctly
-    isOpened=usr_data.open(QIODevice::ReadWrite);
-    if(!isOpened)
+    // check UserData file
+    QFile usr_data_file(USER_DATA_FILE);
+    if(usr_data_file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        throw "Error!Can't find UserData!";
+        qDebug()<<"Opened!";
     }
+    usr_data_file.setTextModeEnabled(1);
+    QTextStream usr_data_stream(&usr_data_file);
 
-    QDataStream usr_data_stream(&usr_data);
-    QHash<QString, QString> finder;
-    usr_data_stream>>finder;
-    usr_data.close();
+    QString finder;
 
-    if(1)
+    while(usr_data_stream.readLineInto(&finder))
     {
-        // find the input username successfully
-        return 1;
-    }
-    return 0;
+
+        usr_data_stream>>finder;
+        qDebug()<<"finding:"+finder;
+
+        if(finder.contains("username:"+m_usrname+",password:"))
+        {
+            // find success
+            qDebug()<<"find success";
+            return true;
+        }
+        else
+        {
+            // cannot find
+            qDebug()<<"cannot find";
+        }
+    };
+
+    usr_data_file.close();
+    return false;
 }
-
 
 bool LogIn::verifyPassword(QString m_usrname, QString m_password)
 {
     // open user data file in readonly mode
-    QFile usr_data("UserData.dat");
-    usr_data.open(QIODevice::ReadWrite);
-    QDataStream usr_data_stream(&usr_data);
-    QHash<QString, QString> finder;
-    usr_data_stream>>finder;
-    usr_data.close();
-    qDebug()<<finder.find(m_usrname).value();
+
 
     // verify the Password
-    if(finder.find(m_usrname).value()==m_password)
-    {
-        return  1;
-    }
-    else
-    {
-        return  0;
-    }
+
 }
 
 void LogIn::userLogin(QString m_usrname, QString m_password)

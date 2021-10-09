@@ -2,6 +2,8 @@
 #define CONFIG_H
 
 // System config
+//  UserData file name
+#define USER_DATA_FILE "UserData.txt"
 
 // 储蓄账户结算周期(天)
 #define SAVING_ACCOUNT_PERIOD 365
