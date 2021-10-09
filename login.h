@@ -6,7 +6,6 @@
 #include "ui_register.h"
 
 
-
 namespace Ui {
 class LogIn;
 }
@@ -20,7 +19,8 @@ public:
     ~LogIn();
     QString username;
     QString password;
-
+    bool loginStatus=false;
+    void loginExec();
 
 
 

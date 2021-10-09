@@ -27,6 +27,8 @@ LogIn::~LogIn()
 }
 
 
+
+
 bool LogIn::findUsername(QString m_usrname)
 {
 
@@ -68,31 +70,60 @@ bool LogIn::verifyPassword(QString m_usrname, QString m_password)
 {
     // open user data file in readonly mode
 
-
+    QFile usr_data(USER_DATA_FILE);
+    usr_data.open(QIODevice::ReadOnly | QIODevice::Text);
+    QTextStream usr_data_stream(&usr_data);
     // verify the Password
-
+    QString finder;
+    while(usr_data_stream.readLineInto(&finder))
+    {
+        qDebug()<<"finding...current line:"+finder;
+        if(finder.contains("username:"+m_usrname+",password:"))
+        {
+            qDebug()<<"find username success!";
+            qDebug()<<"validating password...";
+            if(finder.contains(",password:"+m_password+";"))
+            {
+                // Password correct
+                qDebug()<<"Password correct";
+                return true;
+            }
+            else
+            {
+                // Password error
+                qDebug()<<"Password error";
+                return false;
+            }
+        }
+        else
+        {
+            qDebug()<<"cannot find username!";
+        }
+    }
+    return false;
 }
 
 void LogIn::userLogin(QString m_usrname, QString m_password)
 {
-    try {
-        if(findUsername(m_usrname)) {
-            if(verifyPassword(m_usrname,m_password)) {
-                // login successfully
-            }
-            else {
-                // password is incorrect
-                throw false;
-            }
-        }
+//    try {
+//        if(findUsername(m_usrname)) {
+//            if(verifyPassword(m_usrname,m_password)) {
+//                // login successfully
+//            }
+//            else {
+//                // password is incorrect
+//                throw false;
+//            }
+//        }
 
-    }
-    catch (QString msg) {
-        // can't find Data file
-    }
-    catch (bool) {
-        // password is incorrect
-    }
+//    }
+//    catch (QString msg) {
+//        // can't find Data file
+//    }
+//    catch (bool) {
+//        // password is incorrect
+//    }
+
 }
 
 void LogIn::on_userQuit_clicked()
@@ -137,15 +168,16 @@ void LogIn::on_logIn_clicked()
         if(verifyPassword(username,password))
         {
             // password correct
-            qDebug()<<"password correct";
             QMessageBox msg;
             msg.setText("Login successfuly!");
             msg.exec();
+            loginStatus=true;
+            close();
+
         }
         else
         {
-            // password error
-            qDebug()<<"password error";
+            // password error           
             QMessageBox msg;
             msg.setText("Password is wrong!");
             msg.exec();
@@ -174,4 +206,10 @@ void LogIn::on_forgotPassword_clicked()
     QMessageBox msgBox;
     msgBox.setText("Developing...Couldn't use the function now.");
     msgBox.exec();
+}
+
+
+void LogIn::loginExec()
+{
+    ;
 }

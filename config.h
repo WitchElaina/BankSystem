@@ -16,6 +16,6 @@
 
 // invalid characters
 #define INVALID_CHAR invalid_chars
-#define INVALID_CHAR_NUM 9
+#define INVALID_CHAR_NUM 10
 
 #endif // CONFIG_H

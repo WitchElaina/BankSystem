@@ -75,7 +75,7 @@
               </widget>
              </item>
              <item row="0" column="1">
-              <widget class="QLineEdit" name="lineEdit">
+              <widget class="QLineEdit" name="usr_name">
                <property name="cursor">
                 <cursorShape>ArrowCursor</cursorShape>
                </property>
@@ -498,11 +498,6 @@
    <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionxinjian">
-   <property name="text">
-    <string>xinjian</string>
-   </property>
-  </action>
   <action name="actionNew">
    <property name="text">
     <string>新建</string>

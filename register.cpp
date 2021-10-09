@@ -9,7 +9,7 @@
 #include "config.h"
 using namespace std;
 
-const QString invalid_chars[9]={" ","\\","/","[","]",",",":","username","password"};
+const QString invalid_chars[10]={" ","\\","/","[","]",",",":",";","username","password"};
 
 
 Register::Register(QWidget *parent) :
@@ -149,7 +149,7 @@ void Register::on_buttonBox_accepted()
         usr_data_file.open(QIODevice::ReadWrite | QIODevice::Append);
         QTextStream usr_data_stream(&usr_data_file);
 
-        usr_data_stream<<"\nusername:"+username+",password:"+password;
+        usr_data_stream<<"\nusername:"+username+",password:"+password+";";
 
 
 
