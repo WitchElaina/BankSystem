@@ -5,7 +5,11 @@
 #include <QFile>
 #include <fstream>
 #include <QMessageBox>
+#include <QFileDialog>
+#include "config.h"
 using namespace std;
+
+const QString invalid_chars[9]={" ","\\","/","[","]",",",":","username","password"};
 
 
 Register::Register(QWidget *parent) :
@@ -22,20 +26,26 @@ Register::~Register()
 
 bool Register::findUsername(QString m_usrname)
 {
+    // QString filename=QFileDialog::getOpenFileName(this,tr("Select UserData File"));
     // check UserData file
     QFile usr_data_file("UserData.txt");
-    usr_data_file.open(QIODevice::ReadWrite);
+    if(usr_data_file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug()<<"Opened!";
+    }
     usr_data_file.setTextModeEnabled(1);
     QTextStream usr_data_stream(&usr_data_file);
 
     QString finder;
 
-    do
+    while(usr_data_stream.readLineInto(&finder))
     {
+
         usr_data_stream>>finder;
         qDebug()<<"finding:"+finder;
-        if(m_usrname==finder)
-        {
+
+        if(finder.contains("username:"+username+",password:"))
+        {        
             // find success
             qDebug()<<"find success";
             return true;
@@ -45,9 +55,29 @@ bool Register::findUsername(QString m_usrname)
             // cannot find
             qDebug()<<"cannot find";
         }
-    }while(!finder.isNull());
+    };
 
     usr_data_file.close();
+    return false;
+}
+
+bool Register::spaceAndSignJudger(QString m_qstr)
+{
+    // Judge if a QString null
+    if(m_qstr.isNull())
+    {
+        return true;
+    }
+
+    // Judge if a QString has invaild chars, such as " ", "/", "\"...
+    for(int i=0;i<INVALID_CHAR_NUM;i++)
+    {
+        if(m_qstr.contains(INVALID_CHAR[i]))
+        {
+            qDebug()<<m_qstr+"contains invalid char"+INVALID_CHAR[i];
+            return true;
+        }
+    }
     return false;
 }
 
@@ -68,6 +98,31 @@ void Register::on_buttonBox_accepted()
     // press the register button
     qDebug()<<"Submit the username and password\nUsername: "<<username<<"\nPassword: "<<password;
 
+    // Judge if the username valid
+    qDebug()<<"Judging if the username valid...";
+    if(spaceAndSignJudger(username))
+    {
+        qDebug()<<"username invalid!";
+        QMessageBox msgBox;
+        msgBox.setText("用户名包含非法字符!");
+        msgBox.exec();
+
+    }
+
+    // Judge if the password valid
+    if(spaceAndSignJudger(password))
+    {
+        qDebug()<<"password invalid!";
+        QMessageBox msgBox;
+        msgBox.setText("密码包含非法字符!");
+        msgBox.exec();
+
+    }
+
+
+
+
+
     // Judge if the input username already exist
     bool username_exist=findUsername(username);
 
@@ -79,6 +134,7 @@ void Register::on_buttonBox_accepted()
         msgBox.setText("用户名已存在!无法完成注册");
         msgBox.exec();
     }
+
     else
     {
         qDebug()<<"Creating new account...";
@@ -89,22 +145,14 @@ void Register::on_buttonBox_accepted()
 
 
         // create IO device
-        usr_data_file.open(QIODevice::ReadWrite);
+        usr_data_file.open(QIODevice::ReadWrite | QIODevice::Append);
         QTextStream usr_data_stream(&usr_data_file);
-        QString reader;
-        do
-        {
-            usr_data_stream>>reader;
-        }while(!reader.isNull());
 
-        // create TXT temp
-        usr_data_stream<<username;
+        usr_data_stream<<"\nusername:"+username+",password:"+password;
 
 
-        // copy the original data
 
 
-        // insert new data
 
 
         // replace the original QHash data

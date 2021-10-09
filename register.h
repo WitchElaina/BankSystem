@@ -2,7 +2,7 @@
 #define REGISTER_H
 
 #include <QDialog>
-#include <QHash>
+
 
 namespace Ui {
 class Register;
@@ -20,6 +20,8 @@ public:
     QHash<QString,QString> usr_hash;
 
     bool findUsername(QString m_usrname);
+
+    bool spaceAndSignJudger(QString m_qstr);
 
 private slots:
     void on_usrnameEdit_textChanged(const QString &arg1);
