@@ -1,5 +1,5 @@
-#include "login.h"
-#include "ui_login.h"
+#include "logindialog.h"
+#include "ui_logindialog.h"
 
 #include <QObject>
 #include <QMessageBox>
@@ -11,25 +11,19 @@
 
 #include "config.h"
 
-using namespace std;
-
-LogIn::LogIn(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::LogIn)
+LogInDialog::LogInDialog(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::LogInDialog)
 {
     ui->setupUi(this);
-
 }
 
-LogIn::~LogIn()
+LogInDialog::~LogInDialog()
 {
     delete ui;
 }
 
-
-
-
-bool LogIn::findUsername(QString m_usrname)
+bool LogInDialog::findUsername(QString m_usrname)
 {
 
     // check UserData file
@@ -66,7 +60,7 @@ bool LogIn::findUsername(QString m_usrname)
     return false;
 }
 
-bool LogIn::verifyPassword(QString m_usrname, QString m_password)
+bool LogInDialog::verifyPassword(QString m_usrname, QString m_password)
 {
     // open user data file in readonly mode
 
@@ -103,84 +97,30 @@ bool LogIn::verifyPassword(QString m_usrname, QString m_password)
     return false;
 }
 
-void LogIn::userLogin(QString m_usrname, QString m_password)
+void LogInDialog::on_userName_textChanged(const QString &arg1)
 {
-//    try {
-//        if(findUsername(m_usrname)) {
-//            if(verifyPassword(m_usrname,m_password)) {
-//                // login successfully
-//            }
-//            else {
-//                // password is incorrect
-//                throw false;
-//            }
-//        }
-
-//    }
-//    catch (QString msg) {
-//        // can't find Data file
-//    }
-//    catch (bool) {
-//        // password is incorrect
-//    }
-
-}
-
-void LogIn::on_userQuit_clicked()
-{
-    qDebug()<<"press exit button";
-    QMessageBox msgBox;
-    msgBox.setText("App Exited!");
-    msgBox.exec();
-    // exit the program
-    exit(0);
-}
-
-void LogIn::on_userName_textChanged()
-{
-    username=ui->userName->text();
+    // username=ui->userName->text();
+    username=arg1;
     qDebug()<<"text edited:"<<username;
-
 }
 
-void LogIn::on_userPassword_textChanged()
+void LogInDialog::on_userPassword_textChanged(const QString &arg1)
 {
-    password=ui->userPassword->text();
+    // password=ui->userPassword->text();
+    password=arg1;
     qDebug()<<"password edited:"<<password;
 }
 
-void LogIn::on_userPassword_textChanged(QString const& arg)
-{
 
-}
 
-void LogIn::on_logIn_clicked()
-{
-
-}
-
-void LogIn::on_userRegister_clicked()
+void LogInDialog::on_userRegister_clicked()
 {
     qDebug()<<"start resgister";
     Register *res_ui=new Register;
     res_ui->exec();
 }
 
-void LogIn::on_forgotPassword_clicked()
-{
-    qDebug()<<"forgot password";
-    QMessageBox msgBox;
-    msgBox.setText("Developing...Couldn't use the function now.");
-    msgBox.exec();
-}
-
-
-void LogIn::loginExec()
-{
-    ;
-}
-
-void LogIn::on_buttonBox_accepted()
+void LogInDialog::on_buttonBox_accepted()
 {
     qDebug()<<"start login";
 
@@ -217,4 +157,14 @@ void LogIn::on_buttonBox_accepted()
         msg.setText("User doesn't exist!\nPlease register first.");
         msg.exec();
     }
+}
+
+void LogInDialog::on_buttonBox_rejected()
+{
+    // Quit App
+    qDebug()<<"Quit app";
+    QMessageBox msg;
+    msg.setText("Exited!");
+    msg.exec();
+    exit(0);
 }

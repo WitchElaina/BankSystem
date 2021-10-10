@@ -17,7 +17,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     date.cpp \
-    login.cpp \
+	# login.cpp \
+    logindialog.cpp \
     main.cpp \
     mainwindow.cpp \
     account.cpp \
@@ -28,13 +29,15 @@ HEADERS += \
     account.h \
     config.h \
     date.h \
-    login.h \
+	# login.h \
+    logindialog.h \
     mainwindow.h \
     register.h \
     withdrawdialog.h
 
 FORMS += \
-    login.ui \
+	# login.ui \
+    logindialog.ui \
     mainwindow.ui \
     register.ui \
     withdrawdialog.ui
