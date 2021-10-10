@@ -13,4 +13,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::userInit(LogInDialog *m_login_dialog)
+{
+     ui->usr_name->setText( m_login_dialog->username );
+}
+
+
+
 

@@ -15,7 +15,9 @@ LogInDialog::LogInDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::LogInDialog)
 {
+    qDebug()<<COPYRIGHT_MESSAGE << GITHUB_REPO_URL;
     ui->setupUi(this);
+
 }
 
 LogInDialog::~LogInDialog()

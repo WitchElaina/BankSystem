@@ -2,8 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "login.h"
-#include "ui_login.h"
+#include "logindialog.h"
+#include "ui_logindialog.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,8 +15,20 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+
+    //
+
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+    // initialize user data
+    void userInit(LogInDialog *m_login_dialog);
+
+    //
+
+
+
+private slots:
 
 
 private:

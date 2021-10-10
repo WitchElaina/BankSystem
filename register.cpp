@@ -17,6 +17,7 @@ Register::Register(QWidget *parent) :
     ui(new Ui::Register)
 {
     ui->setupUi(this);
+
 }
 
 Register::~Register()

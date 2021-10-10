@@ -18,4 +18,8 @@
 #define INVALID_CHAR invalid_chars
 #define INVALID_CHAR_NUM 10
 
+// copyright msg
+#define COPYRIGHT_MESSAGE "Author: 42024203 in USTB"
+#define GITHUB_REPO_URL "\nGithub_Repo: https://github.com/LinYuanChan/BankSystem"
+
 #endif // CONFIG_H

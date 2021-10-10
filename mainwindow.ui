@@ -53,22 +53,8 @@
           <item>
            <widget class="QWidget" name="widget" native="true">
             <layout class="QGridLayout" name="gridLayout">
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_3">
-               <property name="text">
-                <string>账户余额</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="1">
-              <widget class="QLineEdit" name="lineEdit_4">
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
              <item row="3" column="0">
-              <widget class="QLabel" name="label_5">
+              <widget class="QLabel" name="label_usr_expend">
                <property name="text">
                 <string>当月支出</string>
                </property>
@@ -84,31 +70,45 @@
                </property>
               </widget>
              </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_usr_balance">
+               <property name="text">
+                <string>账户余额</string>
+               </property>
+              </widget>
+             </item>
              <item row="1" column="1">
-              <widget class="QLineEdit" name="lineEdit_2">
+              <widget class="QLineEdit" name="usr_balance">
                <property name="readOnly">
                 <bool>true</bool>
                </property>
               </widget>
              </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_4">
-               <property name="text">
-                <string>当月收入</string>
+             <item row="3" column="1">
+              <widget class="QLineEdit" name="month_expend">
+               <property name="readOnly">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
              <item row="0" column="0">
-              <widget class="QLabel" name="label_2">
+              <widget class="QLabel" name="label_usr_name">
                <property name="text">
                 <string>用户名称</string>
                </property>
               </widget>
              </item>
              <item row="2" column="1">
-              <widget class="QLineEdit" name="lineEdit_3">
+              <widget class="QLineEdit" name="month_income">
                <property name="readOnly">
                 <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_usr_income">
+               <property name="text">
+                <string>当月收入</string>
                </property>
               </widget>
              </item>
@@ -119,28 +119,28 @@
            <widget class="QWidget" name="widget_9" native="true">
             <layout class="QVBoxLayout" name="verticalLayout">
              <item>
-              <widget class="QPushButton" name="pushButton_2">
+              <widget class="QPushButton" name="pushButton_create_credit_account">
                <property name="text">
                 <string>创建信用卡</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_3">
-               <property name="text">
-                <string>修改密码</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton">
+              <widget class="QPushButton" name="pushButton_create_savings_acount">
                <property name="text">
                 <string>创建储蓄卡</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_4">
+              <widget class="QPushButton" name="pushButton_change_password">
+               <property name="text">
+                <string>修改密码</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_logout">
                <property name="text">
                 <string>登出</string>
                </property>
@@ -165,7 +165,7 @@
               <widget class="QWidget" name="widget_2" native="true">
                <layout class="QGridLayout" name="gridLayout_2">
                 <item row="3" column="1">
-                 <widget class="QLineEdit" name="lineEdit_5">
+                 <widget class="QLineEdit" name="usr_sav_month_expend">
                   <property name="readOnly">
                    <bool>true</bool>
                   </property>
@@ -186,14 +186,14 @@
                  </widget>
                 </item>
                 <item row="2" column="1">
-                 <widget class="QLineEdit" name="lineEdit_6">
+                 <widget class="QLineEdit" name="usr_sav_month_income">
                   <property name="readOnly">
                    <bool>true</bool>
                   </property>
                  </widget>
                 </item>
                 <item row="0" column="1">
-                 <widget class="QLineEdit" name="lineEdit_8">
+                 <widget class="QLineEdit" name="usr_sav_balance">
                   <property name="readOnly">
                    <bool>true</bool>
                   </property>
@@ -214,7 +214,7 @@
                  </widget>
                 </item>
                 <item row="1" column="1">
-                 <widget class="QLineEdit" name="lineEdit_7">
+                 <widget class="QLineEdit" name="usr_sav_rate">
                   <property name="readOnly">
                    <bool>true</bool>
                   </property>
@@ -227,14 +227,14 @@
               <widget class="QWidget" name="widget_3" native="true">
                <layout class="QHBoxLayout" name="horizontalLayout_2">
                 <item>
-                 <widget class="QPushButton" name="pushButton_5">
+                 <widget class="QPushButton" name="pushButton_sav_deposite">
                   <property name="text">
                    <string>存款</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="pushButton_6">
+                 <widget class="QPushButton" name="pushButton_sav_withdraw">
                   <property name="text">
                    <string>取款</string>
                   </property>
@@ -256,7 +256,7 @@
               <widget class="QWidget" name="widget_4" native="true">
                <layout class="QGridLayout" name="gridLayout_3">
                 <item row="2" column="1">
-                 <widget class="QLineEdit" name="lineEdit_11">
+                 <widget class="QLineEdit" name="usr_cre_credit">
                   <property name="readOnly">
                    <bool>true</bool>
                   </property>
@@ -270,7 +270,7 @@
                  </widget>
                 </item>
                 <item row="5" column="1">
-                 <widget class="QLineEdit" name="lineEdit_10">
+                 <widget class="QLineEdit" name="usr_cre_month_income">
                   <property name="readOnly">
                    <bool>true</bool>
                   </property>
@@ -284,14 +284,14 @@
                  </widget>
                 </item>
                 <item row="6" column="1">
-                 <widget class="QLineEdit" name="lineEdit_9">
+                 <widget class="QLineEdit" name="usr_cre_month_expend">
                   <property name="readOnly">
                    <bool>true</bool>
                   </property>
                  </widget>
                 </item>
                 <item row="4" column="1">
-                 <widget class="QLineEdit" name="lineEdit_12">
+                 <widget class="QLineEdit" name="usr_cre_rate">
                   <property name="readOnly">
                    <bool>true</bool>
                   </property>
@@ -319,7 +319,7 @@
                  </widget>
                 </item>
                 <item row="1" column="1">
-                 <widget class="QLineEdit" name="lineEdit_13">
+                 <widget class="QLineEdit" name="usr_cre_balance">
                   <property name="readOnly">
                    <bool>true</bool>
                   </property>
@@ -332,14 +332,14 @@
               <widget class="QWidget" name="widget_5" native="true">
                <layout class="QHBoxLayout" name="horizontalLayout_3">
                 <item>
-                 <widget class="QPushButton" name="pushButton_7">
+                 <widget class="QPushButton" name="pushButton_cre_deposite">
                   <property name="text">
                    <string>还款</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="pushButton_8">
+                 <widget class="QPushButton" name="pushButton_cre_withdraw">
                   <property name="text">
                    <string>支出</string>
                   </property>
@@ -377,6 +377,22 @@
               <widget class="QWidget" name="widget_8" native="true">
                <layout class="QVBoxLayout" name="verticalLayout_5">
                 <item>
+                 <widget class="QWidget" name="widget_15" native="true">
+                  <layout class="QHBoxLayout" name="horizontalLayout_8">
+                   <item>
+                    <widget class="QLabel" name="label_2">
+                     <property name="text">
+                      <string>日期设置</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QDateEdit" name="dateEdit"/>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QWidget" name="widget_6" native="true">
                   <layout class="QHBoxLayout" name="horizontalLayout_4">
                    <item>
@@ -387,7 +403,7 @@
                     </widget>
                    </item>
                    <item>
-                    <widget class="QComboBox" name="comboBox">
+                    <widget class="QComboBox" name="comboBox_select_rec_type">
                      <item>
                       <property name="text">
                        <string>储蓄卡</string>
@@ -409,17 +425,44 @@
                  </widget>
                 </item>
                 <item>
+                 <widget class="QWidget" name="widget_14" native="true">
+                  <layout class="QHBoxLayout" name="horizontalLayout_7">
+                   <item>
+                    <widget class="QLabel" name="label">
+                     <property name="text">
+                      <string>排序方式</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="comboBox">
+                     <item>
+                      <property name="text">
+                       <string>时间顺序</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>数额大小</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QWidget" name="widget_7" native="true">
                   <layout class="QHBoxLayout" name="horizontalLayout_5">
                    <item>
-                    <widget class="QPushButton" name="pushButton_9">
+                    <widget class="QPushButton" name="pushButton_print_record">
                      <property name="text">
                       <string>查询流水</string>
                      </property>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="pushButton_10">
+                    <widget class="QPushButton" name="pushButton_export_record">
                      <property name="text">
                       <string>导出流水</string>
                      </property>
