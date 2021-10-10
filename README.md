@@ -2,7 +2,7 @@
 C++大作业，基于QT开发的银行系统
 
 ## Logo更新！
-https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/SheepBankLogo.2phrk3zlrne0.png
+![SheepBankLogo](https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/SheepBankLogo.2phrk3zlrne0.png)
 
 **目前已经实现的功能：**
 - 用户登录
