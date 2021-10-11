@@ -1,5 +1,3 @@
-
-
 #include "account.h"
 #include "config.h"
 

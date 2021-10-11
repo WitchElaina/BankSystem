@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -26,7 +26,8 @@ SOURCES += \
     mainwindow.cpp \
     account.cpp \
     register.cpp \
-    withdrawdialog.cpp
+	withdrawdialog.cpp \
+	# tinyxml2.cpp
 
 HEADERS += \
     account.h \
@@ -36,7 +37,8 @@ HEADERS += \
     logindialog.h \
     mainwindow.h \
     register.h \
-    withdrawdialog.h
+	withdrawdialog.h \
+	# tinyxml2.h
 
 FORMS += \
 	# login.ui \

@@ -2,7 +2,7 @@
 C++大作业，基于QT开发的银行系统
 
 ## Logo更新！
-![SheepBankLogo](https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/SheepBankLogo.2phrk3zlrne0.png)
+<img src="https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/SheepBankLogo.2phrk3zlrne0.png" alt="SheepBankLogo" style="zoom:50%;" />
 
 **目前已经实现的功能：**
 - 用户登录
@@ -81,5 +81,4 @@ C++大作业，基于QT开发的银行系统
 4. **可以查询某个月按照时间排序的账户查询信息。**
 
 5. **可以查询某个月按照交易金额从大到小排序的账户查询信息**
-
 

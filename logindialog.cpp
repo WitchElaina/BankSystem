@@ -149,6 +149,7 @@ void LogInDialog::on_buttonBox_accepted()
             QMessageBox msg;
             msg.setText("Password is wrong!");
             msg.exec();
+            exit(0);
         }
     }
     else
@@ -158,6 +159,7 @@ void LogInDialog::on_buttonBox_accepted()
         QMessageBox msg;
         msg.setText("User doesn't exist!\nPlease register first.");
         msg.exec();
+        exit(0);
     }
 }
 
