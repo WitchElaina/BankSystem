@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "account.h"
+#include "config.h"
+#include "commandtranslator.h"
+
 
 #include <QFile>
 #include <QDebug>
@@ -11,11 +14,18 @@
 #include <fstream>
 using namespace std;
 
-//struct deleter {
-//    template <class T> void operator () (T* p) {
-//        delete p;
-//    }
-//};
+struct deleter {
+    template <class T> void operator () (T* p) {
+        delete p;
+
+    }
+};
+
+Date date(2008, 11, 1);//起始日期
+vector<Account *> accounts;//创建账户数组，元素个数为0
+//Account* accounts[3];//创建账户数组，元素个数为0
+Account* default_account=new SavingsAccount (date,"dafault_account",0);
+CommandTranslator cmd_translator;
 
 
 
@@ -24,6 +34,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+
 }
 
 MainWindow::~MainWindow()
@@ -31,16 +43,57 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::flashuserData()
+{
+    // show info
+    QString info;
+
+    // total info
+    //info.setNum(accounts[SAVINGS_ACCOUNT_INDEX]->getTotal());
+    ui->usr_balance->setText(info);
+
+
+    if (accounts[DEFAULT_ACCOUNT_INDEX]->has_savings)
+    {
+        //SavingsAcc info
+        info.setNum(accounts[SAVINGS_ACCOUNT_INDEX]->getBalance());
+        ui->usr_sav_balance->setText(info);
+
+        info.setNum(accounts[SAVINGS_ACCOUNT_INDEX]->getRate());
+        ui->usr_sav_rate->setText(info);
+
+    }
+
+    if(accounts[DEFAULT_ACCOUNT_INDEX]->has_credit)
+    {
+        // CreditAcc info
+        info.setNum(accounts[CREDIT_ACCOUNT_INDEX]->getBalance());
+        ui->usr_cre_balance->setText(info);
+
+        info.setNum(accounts[CREDIT_ACCOUNT_INDEX]->getCredit());
+        ui->usr_cre_credit->setText(info);
+
+        info.setNum(accounts[CREDIT_ACCOUNT_INDEX]->getRate());
+        ui->usr_cre_rate->setText(info);
+    }
+}
+
+
 void MainWindow::userInit(LogInDialog *m_login_dialog)
 {
     ui->usr_name->setText( m_login_dialog->username );
+//    accounts[DEFAULT_ACCOUNT_INDEX]=default_account;
+    accounts.push_back(default_account);
+//    accounts[CREDIT_ACCOUNT_INDEX]=default_account;
+    accounts.push_back(default_account);
+//    accounts[SAVINGS_ACCOUNT_INDEX]=default_account;
+    accounts.push_back(default_account);
 
     // Open userdata file
 
     // Run Init commandline
 
-    Date date(2008, 11, 1);//起始日期
-    vector<Account *> accounts;//创建账户数组，元素个数为0
+
     //Account *accounts[2];
 
 
@@ -65,6 +118,7 @@ void MainWindow::userInit(LogInDialog *m_login_dialog)
     }
 
     // Recovery
+
     while (rec)
     {
         char type;
@@ -86,13 +140,17 @@ void MainWindow::userInit(LogInDialog *m_login_dialog)
            if (type == 's') {
                usr_cmd >> rate;
                account = new SavingsAccount(date, id, rate);
+               accounts[SAVINGS_ACCOUNT_INDEX]=account;
+               accounts[DEFAULT_ACCOUNT_INDEX]->has_savings=true;
 
            }
            else {
                usr_cmd >> credit >> rate >> fee;
                account = new CreditAccount(date, id, credit, rate, fee);
+               accounts[CREDIT_ACCOUNT_INDEX]=account;
+               accounts[DEFAULT_ACCOUNT_INDEX]->has_credit=true;
            }
-           accounts.push_back(account);
+           //accounts.push_back(account);
            break;
 
         case 'd'://存入现金
@@ -145,17 +203,23 @@ void MainWindow::userInit(LogInDialog *m_login_dialog)
         }
    }
 
+
+
     usr_cmd.close();
 
 
-    // show info
-//   QString info;
-//    info.setNum(accounts[0]->getTotal());
-//    ui->usr_balance->setText(info);
+    // load user data
+    flashuserData();
+
+
+    //Release Mem
+    for_each(accounts.begin(), accounts.end(), deleter());
 
 
 
 }
+
+
 
 
 

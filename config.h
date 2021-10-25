@@ -22,4 +22,9 @@
 #define COPYRIGHT_MESSAGE "Author: 42024203 in USTB"
 #define GITHUB_REPO_URL "\nGithub_Repo: https://github.com/LinYuanChan/BankSystem"
 
+// index
+#define SAVINGS_ACCOUNT_INDEX 0
+#define CREDIT_ACCOUNT_INDEX 1
+#define DEFAULT_ACCOUNT_INDEX 2
+
 #endif // CONFIG_H

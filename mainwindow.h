@@ -15,19 +15,13 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-
-    //
-
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
     // initialize user data
     void userInit(LogInDialog *m_login_dialog);
 
-    //
-
-
-
+    void flashuserData();
 private slots:
 
 

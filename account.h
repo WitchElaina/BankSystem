@@ -65,8 +65,13 @@ class Account
     // 账目记录
     static multimap<Date, AccountRecord>recordMap;
 
+
     
-public:
+public:    
+    // Card Exist
+    bool has_savings=false;
+    bool has_credit=false;
+
     // 构造函数
     Account(Date m_date,string m_id);
 
@@ -81,6 +86,10 @@ public:
     double getBalance();
     // 获取系统总存款
     static double getTotal();
+    // get Rate
+    virtual double getRate()=0;
+    // get Credit
+    virtual double getCredit()=0;
     // 打印用户信息函数
     virtual void show()=0;
     // 存款函数
@@ -116,6 +125,8 @@ public:
     void settle(Date m_date);
     // 打印账户信息
     void show();
+    //
+    double getCredit();
 
 };
 

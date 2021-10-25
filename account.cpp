@@ -220,7 +220,12 @@ void SavingsAccount::settle(Date m_date)
 // 打印账户信息
 void SavingsAccount::show()
 {
-    cout<<getID()<<"\t"<<"Balance: "<<getBalance();   
+    cout<<getID()<<"\t"<<"Balance: "<<getBalance();
+}
+
+double SavingsAccount::getCredit()
+{
+    return 0;
 }
 
 // 信用卡类方法

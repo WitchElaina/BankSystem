@@ -15,7 +15,7 @@ const int DAY_EACH_MONTH[]={31,28,31,30,31,30,31,31,30,31,30,31};
 class Date
 {
     int year;
-    int month;
+    int month=1;
     int day;
 
 public:
