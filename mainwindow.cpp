@@ -49,7 +49,7 @@ void MainWindow::flashuserData()
     QString info;
 
     // total info
-    //info.setNum(accounts[SAVINGS_ACCOUNT_INDEX]->getTotal());
+    info.setNum(accounts[SAVINGS_ACCOUNT_INDEX]->getTotal());
     ui->usr_balance->setText(info);
 
 
@@ -75,6 +75,37 @@ void MainWindow::flashuserData()
 
         info.setNum(accounts[CREDIT_ACCOUNT_INDEX]->getRate());
         ui->usr_cre_rate->setText(info);
+    }
+}
+
+void MainWindow::flashGUI()
+{
+
+    // Set PushButton Enabled
+    if (accounts[DEFAULT_ACCOUNT_INDEX]->has_savings)
+    {
+        ui->pushButton_create_savings_acount->setEnabled(false);
+        ui->pushButton_sav_deposite->setEnabled(true);
+        ui->pushButton_sav_withdraw->setEnabled(true);
+    }
+    else
+    {
+        ui->pushButton_create_savings_acount->setEnabled(true);
+        ui->pushButton_sav_deposite->setEnabled(false);
+        ui->pushButton_sav_withdraw->setEnabled(false);
+    }
+
+    if(accounts[DEFAULT_ACCOUNT_INDEX]->has_credit)
+    {
+        ui->pushButton_create_credit_account->setEnabled(false);
+        ui->pushButton_cre_deposite->setEnabled(true);
+        ui->pushButton_cre_withdraw->setEnabled(true);
+    }
+    else
+    {
+        ui->pushButton_create_credit_account->setEnabled(true);
+        ui->pushButton_cre_deposite->setEnabled(false);
+        ui->pushButton_cre_withdraw->setEnabled(false);
     }
 }
 
@@ -211,11 +242,11 @@ void MainWindow::userInit(LogInDialog *m_login_dialog)
     // load user data
     flashuserData();
 
+    //Reflash GUI
+    flashGUI();
 
     //Release Mem
     for_each(accounts.begin(), accounts.end(), deleter());
-
-
 
 }
 

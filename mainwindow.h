@@ -21,7 +21,11 @@ public:
     // initialize user data
     void userInit(LogInDialog *m_login_dialog);
 
+    // flash data throw commmand lines
     void flashuserData();
+
+    // flash GUI
+    void flashGUI();
 private slots:
 
 
