@@ -43,6 +43,37 @@ int Date::getDay()const
     return day;
 }
 
+bool Date::isValid()
+{
+
+    // validat year
+    if(year<SYSTEM_MINIMUM_YEAR||year>SYSTEM_MAXIMUM_YEAR)
+        return false;
+
+    // validat month
+    if(month<=0||month>12)
+        return false;
+
+    // validat day
+    if(day<=0)
+        return false;
+
+    if(isLeap(year))
+    {
+        if(day>DAY_EACH_MONTH[month-1]+1)
+            return false;
+    }
+    else
+    {
+        if(day>DAY_EACH_MONTH[month-1])
+            return false;
+    }
+
+    return true;
+
+
+}
+
 // 闰年判断
 bool Date::isLeap(int m_year)const
 {

@@ -1,6 +1,9 @@
 #ifndef COMMANDTRANSLATOR_H
 #define COMMANDTRANSLATOR_H
 
+#include "withdrawdialog.h"
+#include "ui_withdrawdialog.h"
+
 #include <fstream>
 using namespace std;
 
@@ -14,6 +17,12 @@ public:
 
     // skip abunai command
     void invalidCommandSkiper(int cmd_index,fstream cmd);
+
+    // GUI withdraw
+    void withdrawGUI(string cmd_username,int cmd_index,double cmd_amount,string cmd_desc);
+
+    // GUI deposite
+    void depositeGUI(string cmd_username,int cmd_index,double cmd_amount,string cmd_desc);
 
 };
 

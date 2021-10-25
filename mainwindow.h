@@ -29,6 +29,12 @@ public:
 private slots:
 
 
+    void on_pushButton_logout_clicked();
+
+    void on_pushButton_sav_deposite_clicked();
+
+    void on_pushButton_sav_withdraw_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

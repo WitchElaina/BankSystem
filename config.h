@@ -27,4 +27,8 @@
 #define CREDIT_ACCOUNT_INDEX 1
 #define DEFAULT_ACCOUNT_INDEX 2
 
+// System valid year range
+#define SYSTEM_MINIMUM_YEAR 1949
+#define SYSTEM_MAXIMUM_YEAR 9999
+
 #endif // CONFIG_H

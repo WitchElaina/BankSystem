@@ -2,6 +2,7 @@
 #define date_h
 
 #include <iostream>
+#include "config.h"
 
 using namespace std;
 
@@ -33,6 +34,8 @@ public:
     int getMonth()const;
     // 获取日
     int getDay()const;
+    // judge if the date invalid
+    bool isValid();
     // 闰年判断
     bool isLeap(int m_year)const;
     // 获取当月最大天数

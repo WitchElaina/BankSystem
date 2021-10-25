@@ -7,6 +7,7 @@
 
 #include <QFile>
 #include <QDebug>
+#include <QMessageBox>
 
 
 #include <vector>
@@ -307,3 +308,40 @@ void MainWindow::userInit(LogInDialog *m_login_dialog)
 
 
 
+
+void MainWindow::on_pushButton_logout_clicked()
+{
+    QMessageBox msg;
+    msg.setText("Exited!Bye~");
+    msg.exec();
+    exit(0);
+
+}
+
+void MainWindow::on_pushButton_sav_deposite_clicked()
+{
+    WithdrawDialog *withdraw_window=new WithdrawDialog;
+    withdraw_window->exec();
+    if(withdraw_window->verifyInput())
+    {
+        cmd_translator.depositeGUI(ui->usr_name->text().toStdString(),SAVINGS_ACCOUNT_INDEX,withdraw_window->amount,withdraw_window->desc);
+    }
+    accounts[SAVINGS_ACCOUNT_INDEX]->deposit(Date(withdraw_window->year,withdraw_window->month,withdraw_window->day),withdraw_window->amount,withdraw_window->desc);
+    delete withdraw_window;
+    flashuserData();
+    flashGUI();
+}
+
+void MainWindow::on_pushButton_sav_withdraw_clicked()
+{
+    WithdrawDialog *withdraw_window=new WithdrawDialog;
+    withdraw_window->exec();
+    if(withdraw_window->verifyInput())
+    {
+        cmd_translator.withdrawGUI(ui->usr_name->text().toStdString(),SAVINGS_ACCOUNT_INDEX,withdraw_window->amount,withdraw_window->desc);
+    }
+    accounts[SAVINGS_ACCOUNT_INDEX]->withdraw(Date(withdraw_window->year,withdraw_window->month,withdraw_window->day),withdraw_window->amount,withdraw_window->desc);
+    delete withdraw_window;
+    flashuserData();
+    flashGUI();
+}

@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>217</width>
-    <height>243</height>
+    <width>324</width>
+    <height>261</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -34,7 +34,39 @@
           </widget>
          </item>
          <item>
-          <widget class="QDateEdit" name="dateEdit"/>
+          <widget class="QLineEdit" name="year_input">
+           <property name="maxLength">
+            <number>4</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>/</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="month_input">
+           <property name="maxLength">
+            <number>2</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>/</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="day_input">
+           <property name="maxLength">
+            <number>2</number>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -50,7 +82,11 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="withdrawAmount"/>
+          <widget class="QLineEdit" name="amount_input">
+           <property name="maxLength">
+            <number>10</number>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -66,7 +102,11 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_3"/>
+          <widget class="QLineEdit" name="desc_input">
+           <property name="maxLength">
+            <number>40</number>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -76,11 +116,17 @@
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="acceptDrops">
+      <bool>false</bool>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
      <property name="standardButtons">
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+     <property name="centerButtons">
+      <bool>false</bool>
      </property>
     </widget>
    </item>
