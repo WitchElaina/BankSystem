@@ -91,6 +91,16 @@ void AccountRecord::show()
     cout<<"\t"<<amount<<"\t"<<balance<<'\t'<<desc<<endl;
 }
 
+double AccountRecord::getAmount()
+{
+    return amount;
+}
+
+string* AccountRecord::getID()
+{
+    return id;
+}
+
 // 账户基类方法
 // 构造函数
 Account::Account(Date m_date,string m_id)
@@ -131,6 +141,11 @@ string Account::getID()
 {
     return id;
 }
+
+string *Account::getIDPtr()
+{
+    return &id;
+}
 // 获取用户余额
 double Account::getBalance()
 {
@@ -147,8 +162,9 @@ void Account::query(Date begin_date, Date end_date)
     multimap<Date,AccountRecord>::iterator it;
     for(it=recordMap.begin();it!=recordMap.end();it++)
     {
-        //todo
-        it->second.show();
+        // check date
+        if((it->first)<=(end_date)&&(begin_date)<=(it->first))
+            it->second.show();
     }
 }
 
@@ -226,6 +242,49 @@ void SavingsAccount::show()
 double SavingsAccount::getCredit()
 {
     return 0;
+}
+
+// get current month bills
+double SavingsAccount::getCurMonthBillAmount(Date m_date, string m_bill_kind, string* m_id)
+{
+    double total=0;
+    multimap<Date,AccountRecord>::iterator it;
+    for(it=recordMap.begin();it!=recordMap.end();it++)
+    {
+        // In the wrong month
+        if(it->first.getYear()!=m_date.getYear() || it->first.getMonth()!=m_date.getMonth() || it->second.getID()!=m_id)
+            continue;
+
+        // Deposite mode
+        if(m_bill_kind=="deposite")
+        {
+            if(it->second.getAmount()>0)
+            {
+                total+=it->second.getAmount();
+            }
+        }
+
+        // Withdraw mode
+        else if(m_bill_kind=="withdraw")
+        {
+            if(it->second.getAmount()<0)
+            {
+                total+=it->second.getAmount();
+            }
+        }
+
+        // Invalid value of mod
+        else
+        {
+            exit(5);
+        }
+    }
+
+    //return amount of bill
+    if(total>=0)
+        return total;
+    else
+        return -total;
 }
 
 // 信用卡类方法
@@ -331,10 +390,53 @@ void CreditAccount::settle(Date m_date)
         withdraw(m_date, CREDIT_ACCOUNT_ANNUAL_FEE, "annual fee");
     
 }
+
 // 打印账户信息
 void CreditAccount::show()
 {
     cout<<getID()<<"\t"<<"Balance: "<<getBalance()<<"\tAvailable credit:"<<getCredit();   
 }
 
+// get current month bills
+double CreditAccount::getCurMonthBillAmount(Date m_date, string m_bill_kind, string* m_id)
+{
+    double total=0;
+    multimap<Date,AccountRecord>::iterator it;
+    for(it=recordMap.begin();it!=recordMap.end();it++)
+    {
+        // In the wrong month
+        if(it->first.getYear()!=m_date.getYear() || it->first.getMonth()!=m_date.getMonth() || it->second.getID()!=m_id)
+            continue;
+
+        // Deposite mode
+        if(m_bill_kind=="deposite")
+        {
+            if(it->second.getAmount()>0)
+            {
+                total+=it->second.getAmount();
+            }
+        }
+
+        // Withdraw mode
+        else if(m_bill_kind=="withdraw")
+        {
+            if(it->second.getAmount()<0)
+            {
+                total+=it->second.getAmount();
+            }
+        }
+
+        // Invalid value of mod
+        else
+        {
+            exit(5);
+        }
+    }
+
+    //return amount of bill
+    if(total>=0)
+        return total;
+    else
+        return -total;
+}
 

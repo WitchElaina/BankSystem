@@ -43,6 +43,7 @@ public:
     int distance(const Date& m_date)const;
     // 重载运算符 < 以实现日期的比较
     bool operator < (const Date& m_date)const;
+    bool operator <= (const Date& m_date)const;
 };
 
 

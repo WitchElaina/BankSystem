@@ -26,6 +26,7 @@ vector<Account *> accounts;//创建账户数组，元素个数为0
 //Account* accounts[3];//创建账户数组，元素个数为0
 Account* default_account=new SavingsAccount (date,"dafault_account",0);
 CommandTranslator cmd_translator;
+double total_income=0,total_expend=0,total_temp;
 
 
 
@@ -47,35 +48,86 @@ void MainWindow::flashuserData()
 {
     // show info
     QString info;
+    string* id_ptr;
 
-    // total info
-    info.setNum(accounts[SAVINGS_ACCOUNT_INDEX]->getTotal());
-    ui->usr_balance->setText(info);
-
-
+    //SavingsAcc info
     if (accounts[DEFAULT_ACCOUNT_INDEX]->has_savings)
     {
-        //SavingsAcc info
+        // user savings account balance
         info.setNum(accounts[SAVINGS_ACCOUNT_INDEX]->getBalance());
         ui->usr_sav_balance->setText(info);
 
+        // user savings account rate
         info.setNum(accounts[SAVINGS_ACCOUNT_INDEX]->getRate());
         ui->usr_sav_rate->setText(info);
 
+        // user savings account current month income
+        id_ptr=accounts[SAVINGS_ACCOUNT_INDEX]->getIDPtr();
+        total_temp=accounts[SAVINGS_ACCOUNT_INDEX]->getCurMonthBillAmount(date,"deposite",id_ptr);
+        info.setNum(total_temp);
+        ui->usr_sav_month_income->setText(info);
+        total_income+=total_temp;
+
+        // user savings account current month expend
+        total_temp=accounts[SAVINGS_ACCOUNT_INDEX]->getCurMonthBillAmount(date,"withdraw",id_ptr);
+        info.setNum(total_temp);
+        ui->usr_sav_month_expend->setText(info);
+        total_expend+=total_temp;
+
+        // reset total temp
+        total_temp=0;
     }
 
+
+    // CreditAcc info
     if(accounts[DEFAULT_ACCOUNT_INDEX]->has_credit)
     {
-        // CreditAcc info
+        // user credit account balance
         info.setNum(accounts[CREDIT_ACCOUNT_INDEX]->getBalance());
         ui->usr_cre_balance->setText(info);
 
+        // user credit account credit
         info.setNum(accounts[CREDIT_ACCOUNT_INDEX]->getCredit());
         ui->usr_cre_credit->setText(info);
 
+        // user credit account rate
         info.setNum(accounts[CREDIT_ACCOUNT_INDEX]->getRate());
         ui->usr_cre_rate->setText(info);
+
+        // user credit account current month income
+        id_ptr=accounts[CREDIT_ACCOUNT_INDEX]->getIDPtr();
+        total_temp=accounts[CREDIT_ACCOUNT_INDEX]->getCurMonthBillAmount(date,"deposite",id_ptr);
+        info.setNum(total_temp);
+        ui->usr_cre_month_income->setText(info);
+        total_income+=total_temp;
+
+        // user credit account current month expend
+        total_temp=accounts[CREDIT_ACCOUNT_INDEX]->getCurMonthBillAmount(date,"withdraw",id_ptr);
+        info.setNum(total_temp);
+        ui->usr_cre_month_expend->setText(info);
+        total_expend+=total_temp;
+
+        // reset total temp
+        total_temp=0;
     }
+
+
+
+    // total info
+
+    // total Balance
+    info.setNum(accounts[SAVINGS_ACCOUNT_INDEX]->getTotal());
+    ui->usr_balance->setText(info);
+
+    // total month expend
+    info.setNum(total_expend);
+    ui->month_expend->setText(info);
+
+    // total month income
+    info.setNum(total_income);
+    ui->month_income->setText(info);
+
+
 }
 
 void MainWindow::flashGUI()
@@ -246,7 +298,7 @@ void MainWindow::userInit(LogInDialog *m_login_dialog)
     flashGUI();
 
     //Release Mem
-    for_each(accounts.begin(), accounts.end(), deleter());
+    // for_each(accounts.begin(), accounts.end(), deleter());
 
 }
 

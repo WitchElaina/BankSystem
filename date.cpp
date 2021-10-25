@@ -110,3 +110,13 @@ bool Date::operator < (const Date& m_date)const
     else
         return false;
 }
+
+bool Date::operator <=(const Date &m_date) const
+{
+    // 日期差为负, 则所比较天数相对日期大于被比较天数, <成立, 取真
+    if(distance(m_date)<=0)
+        return true;
+
+    else
+        return false;
+}

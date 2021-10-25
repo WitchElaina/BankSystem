@@ -50,7 +50,15 @@ public:
     // 构造函数
     AccountRecord(Date m_date, string* m_id, double m_amount, double m_balance, string m_desc);
     AccountRecord();
+
+    // Info Printer
     void show();
+
+    // getAmount
+    double getAmount();
+
+    // getID
+    string* getID();
 };
 
 // 用户类基类
@@ -62,12 +70,13 @@ class Account
     double balance;
     // 系统总存款
     static double total;
-    // 账目记录
-    static multimap<Date, AccountRecord>recordMap;
+
 
 
     
 public:    
+    // 账目记录
+    static multimap<Date, AccountRecord>recordMap;
     // Card Exist
     bool has_savings=false;
     bool has_credit=false;
@@ -82,6 +91,7 @@ public:
     void record(Date m_date, double m_amount,string m_desc);
     // 获取用户ID
     string getID();
+    string* getIDPtr();
     // 获取用户余额
     double getBalance();
     // 获取系统总存款
@@ -100,6 +110,8 @@ public:
     virtual void settle(Date date)=0;
     // 历史流水查询
     static void query(Date begin_date, Date end_date);
+    // Current Month Query
+    virtual double getCurMonthBillAmount(Date m_date,string m_bill_kind,string* m_id)=0;
     
 };
 
@@ -127,6 +139,8 @@ public:
     void show();
     //
     double getCredit();
+    // Current Month Query
+    virtual double getCurMonthBillAmount(Date m_date, string m_bill_kind, string* m_id);
 
 };
 
@@ -164,6 +178,8 @@ public:
     void settle(Date m_date);
     // 打印账户信息
     void show();
+    // Current Month Query
+    virtual double getCurMonthBillAmount(Date m_date, string m_bill_kind, string* m_id);
 };
 
 
