@@ -19,6 +19,7 @@ ICON = Icon.icns
 
 
 SOURCES += \
+	commandtranslator.cpp \
     date.cpp \
 	# login.cpp \
     logindialog.cpp \
@@ -31,6 +32,7 @@ SOURCES += \
 
 HEADERS += \
     account.h \
+	commandtranslator.h \
     config.h \
     date.h \
 	# login.h \
