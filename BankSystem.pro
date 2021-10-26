@@ -20,6 +20,8 @@ ICON = Icon.icns
 
 SOURCES += \
 	commandtranslator.cpp \
+	createcreaccountdialog.cpp \
+	createsavaccountdialog.cpp \
     date.cpp \
 	# login.cpp \
     logindialog.cpp \
@@ -34,6 +36,8 @@ HEADERS += \
     account.h \
 	commandtranslator.h \
     config.h \
+	createcreaccountdialog.h \
+	createsavaccountdialog.h \
     date.h \
 	# login.h \
     logindialog.h \
@@ -44,6 +48,8 @@ HEADERS += \
 
 FORMS += \
 	# login.ui \
+	createcreaccountdialog.ui \
+	createsavaccountdialog.ui \
     logindialog.ui \
     mainwindow.ui \
     register.ui \

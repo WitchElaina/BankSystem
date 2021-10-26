@@ -153,11 +153,11 @@ void Register::on_buttonBox_accepted()
 
         usr_data_stream<<"\nusername:"+username+",password:"+password+";";
 
-        QFile usr_data(username+".txt");
-        usr_data.open(QIODevice::ReadWrite | QIODevice::Text);
-        QTextStream usr_stream(&usr_data);
+//        QFile usr_data(username+".txt");
+//        usr_data.open(QIODevice::ReadWrite | QIODevice::Text);
+//        QTextStream usr_stream(&usr_data);
 
-        usr_stream<<"username:"+username+",password:"+password+";";
+//        usr_stream<<"username:"+username+",password:"+password+";";
 
 
         // replace the original QHash data

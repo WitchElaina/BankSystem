@@ -29,6 +29,12 @@ public:
     // show messagebox with custom string
     void showMessageBox(QString m_msg);
 
+    // create savings account
+    void createSavingsAccountGUI(string cmd_username,string cmd_acc_name,double cmd_rate);
+
+    // create credit account
+    void createCreditAccountGUI(string cmd_username,string cmd_acc_name,double cmd_credit,double cmd_rate,double cmd_annual_fee);
+
 };
 
 #endif // COMMANDTRANSLATOR_H

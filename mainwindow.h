@@ -4,6 +4,10 @@
 #include <QMainWindow>
 #include "logindialog.h"
 #include "ui_logindialog.h"
+#include "createsavaccountdialog.h"
+#include "ui_createsavaccountdialog.h"
+#include "createcreaccountdialog.h"
+#include "ui_createcreaccountdialog.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -41,6 +45,10 @@ private slots:
     void on_pushButton_cre_deposite_clicked();
 
     void on_pushButton_cre_withdraw_clicked();
+
+    void on_pushButton_create_credit_account_clicked();
+
+    void on_pushButton_create_savings_acount_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -384,3 +384,40 @@ void MainWindow::on_pushButton_cre_withdraw_clicked()
     flashuserData();
     flashGUI();
 }
+
+void MainWindow::on_pushButton_create_credit_account_clicked()
+{
+    CreateCreAccountDialog *creat_window=new CreateCreAccountDialog;
+    creat_window->exec();
+    if(creat_window->verifyInput())
+    {
+        // trans GUI operation to command lines
+        cmd_translator.createCreditAccountGUI(ui->usr_name->text().toStdString(),creat_window->account_name.toStdString(),creat_window->credit,creat_window->rate,creat_window->annual_fee);
+        // create account
+        Account* account = new CreditAccount(date, creat_window->account_name.toStdString(),creat_window->credit,creat_window->rate,creat_window->annual_fee);
+        accounts[CREDIT_ACCOUNT_INDEX]=account;
+        accounts[DEFAULT_ACCOUNT_INDEX]->has_credit=true;
+    }
+    delete creat_window;
+    flashuserData();
+    flashGUI();
+}
+
+void MainWindow::on_pushButton_create_savings_acount_clicked()
+{
+    CreateSavAccountDialog *creat_window=new CreateSavAccountDialog;
+    creat_window->exec();
+    if(creat_window->verifyInput())
+    {
+        // trans GUI operation to command lines
+        cmd_translator.createSavingsAccountGUI(ui->usr_name->text().toStdString(),creat_window->account_name.toStdString(),creat_window->rate);
+
+        // create account
+        Account* account = new SavingsAccount(date, creat_window->account_name.toStdString(),creat_window->rate);
+        accounts[SAVINGS_ACCOUNT_INDEX]=account;
+        accounts[DEFAULT_ACCOUNT_INDEX]->has_savings=true;
+    }
+    delete creat_window;
+    flashuserData();
+    flashGUI();
+}
