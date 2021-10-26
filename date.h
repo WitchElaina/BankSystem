@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "config.h"
+#include <QDate>
 
 using namespace std;
 
@@ -47,6 +48,10 @@ public:
     // 重载运算符 < 以实现日期的比较
     bool operator < (const Date& m_date)const;
     bool operator <= (const Date& m_date)const;
+    // set Date to QDate
+    void setDate(QDate &m_qdate);
+    // reset Date from QDate
+    void resetDate(QDate m_qdate);
 };
 
 

@@ -50,6 +50,8 @@ private slots:
 
     void on_pushButton_create_savings_acount_clicked();
 
+    void on_dateEdit_userDateChanged(const QDate &date);
+
 private:
     Ui::MainWindow *ui;
 };

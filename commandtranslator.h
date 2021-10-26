@@ -35,6 +35,8 @@ public:
     // create credit account
     void createCreditAccountGUI(string cmd_username,string cmd_acc_name,double cmd_credit,double cmd_rate,double cmd_annual_fee);
 
+    // jump to specific date
+    void dateChangeGUI(string cmd_username,int cmd_year,int cmd_month,int cmd_day);
 };
 
 #endif // COMMANDTRANSLATOR_H

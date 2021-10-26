@@ -151,3 +151,16 @@ bool Date::operator <=(const Date &m_date) const
     else
         return false;
 }
+
+void Date::setDate(QDate &m_qdate)
+{
+    QDate date(year,month,day);
+    m_qdate=date;
+}
+
+void Date::resetDate(QDate m_qdate)
+{
+    year=m_qdate.year();
+    month=m_qdate.month();
+    day=m_qdate.day();
+}

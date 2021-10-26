@@ -461,13 +461,6 @@
                      </property>
                     </widget>
                    </item>
-                   <item>
-                    <widget class="QPushButton" name="pushButton_export_record">
-                     <property name="text">
-                      <string>导出流水</string>
-                     </property>
-                    </widget>
-                   </item>
                   </layout>
                  </widget>
                 </item>

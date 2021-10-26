@@ -8,6 +8,7 @@
 #include <QFile>
 #include <QDebug>
 #include <QMessageBox>
+#include <QDate>
 
 
 #include <vector>
@@ -184,6 +185,11 @@ void MainWindow::userInit(LogInDialog *m_login_dialog)
 
     // Run Init commandline
 
+    // set Date
+    QDate default_date;
+    date.setDate(default_date);
+    ui->dateEdit->setDate(default_date);
+
 
     //Account *accounts[2];
 
@@ -213,11 +219,11 @@ void MainWindow::userInit(LogInDialog *m_login_dialog)
     while (rec)
     {
         char type;
-        int index, day;
+        int index, day,year,month;
         double amount, credit, rate, fee;
         string id, desc;
         Account* account;
-
+        QDate new_date;
         Date date1, date2;
 
         if(!(usr_cmd>>cmd))
@@ -290,6 +296,13 @@ void MainWindow::userInit(LogInDialog *m_login_dialog)
            date2 = Date::read();
            Account::query(date1, date2);
            break;
+
+        case 'j'://new cmd, jump to specific date
+            usr_cmd >> year >> month >> day;
+            date.resetDate(QDate(year,month,day));
+            for (vector<Account*>::iterator iter = accounts.begin(); iter != accounts.end(); ++iter)
+                (*iter)->settle(date);
+            break;
 
         }
    }
@@ -424,4 +437,36 @@ void MainWindow::on_pushButton_create_savings_acount_clicked()
     delete creat_window;
     flashuserData();
     flashGUI();
+
+
+}
+
+void MainWindow::on_dateEdit_userDateChanged(const QDate &qdate)
+{
+    Date from_qdate;
+
+    from_qdate.resetDate(qdate);
+
+    if(from_qdate<=date)
+    {
+        QDate temp;
+        // can't jump previous date
+        date.setDate(temp);
+        ui->dateEdit->setDate(temp);
+        return ;
+    }
+
+    // set System Date
+    date.resetDate(qdate);
+
+    // trans GUI operation to command lines
+    cmd_translator.dateChangeGUI(ui->usr_name->text().toStdString(),date.getYear(),date.getMonth(),date.getDay());
+
+    // settle
+    for (vector<Account*>::iterator iter = accounts.begin(); iter != accounts.end(); ++iter)
+        (*iter)->settle(date);
+
+    flashuserData();
+    flashGUI();
+
 }

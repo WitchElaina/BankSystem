@@ -31,6 +31,14 @@ void CommandTranslator::createCreditAccountGUI(string cmd_username, string cmd_a
     trans_stream.close();
 }
 
+void CommandTranslator::dateChangeGUI(string cmd_username, int cmd_year, int cmd_month, int cmd_day)
+{
+    fstream trans_stream;
+    trans_stream.open(cmd_username+".txt", ios::app);
+    trans_stream<<"j "<<cmd_year<<" "<<cmd_month<<" "<<cmd_day<<"\n";
+    trans_stream.close();
+}
+
 bool CommandTranslator::indexCheck(int num)
 {
     if(num>=DEFAULT_ACCOUNT_INDEX)
