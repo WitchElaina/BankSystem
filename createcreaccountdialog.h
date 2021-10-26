@@ -15,6 +15,7 @@ class CreateCreAccountDialog : public QDialog
 public:
     explicit CreateCreAccountDialog(QWidget *parent = nullptr);
     ~CreateCreAccountDialog();
+    QString username;
     QString account_name;
     double rate;
     double annual_fee;
@@ -22,6 +23,9 @@ public:
 
     // validat input
     bool verifyInput();
+
+    // show username
+    void showUsername(QString m_username);
 
 private slots:
     void on_lineEdit_account_name_textChanged(const QString &arg1);

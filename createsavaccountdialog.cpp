@@ -26,6 +26,11 @@ bool CreateSavAccountDialog::verifyInput()
     return true;
 }
 
+void CreateSavAccountDialog::showUsername(QString m_username)
+{
+    ui->lineEdit_username->setText(m_username);
+}
+
 void CreateSavAccountDialog::on_lineEdit_account_name_textChanged(const QString &arg1)
 {
     account_name=arg1;

@@ -388,6 +388,8 @@ void MainWindow::on_pushButton_cre_withdraw_clicked()
 void MainWindow::on_pushButton_create_credit_account_clicked()
 {
     CreateCreAccountDialog *creat_window=new CreateCreAccountDialog;
+    creat_window->showUsername(ui->usr_name->text());
+
     creat_window->exec();
     if(creat_window->verifyInput())
     {
@@ -406,6 +408,8 @@ void MainWindow::on_pushButton_create_credit_account_clicked()
 void MainWindow::on_pushButton_create_savings_acount_clicked()
 {
     CreateSavAccountDialog *creat_window=new CreateSavAccountDialog;
+    creat_window->showUsername(ui->usr_name->text());
+
     creat_window->exec();
     if(creat_window->verifyInput())
     {

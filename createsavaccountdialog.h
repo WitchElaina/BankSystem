@@ -15,11 +15,15 @@ class CreateSavAccountDialog : public QDialog
 public:
     explicit CreateSavAccountDialog(QWidget *parent = nullptr);
     ~CreateSavAccountDialog();
+    QString username;
     QString account_name;
     double rate;
 
     // validat input
     bool verifyInput();
+
+    // show username
+    void showUsername(QString m_username);
 
 private slots:
     void on_lineEdit_account_name_textChanged(const QString &arg1);

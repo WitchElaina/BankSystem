@@ -34,6 +34,11 @@ bool CreateCreAccountDialog::verifyInput()
     return true;
 }
 
+void CreateCreAccountDialog::showUsername(QString m_username)
+{
+    ui->lineEdit_username->setText(m_username);
+}
+
 void CreateCreAccountDialog::on_lineEdit_account_name_textChanged(const QString &arg1)
 {
     account_name=arg1;
