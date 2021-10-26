@@ -6,6 +6,8 @@
 #include <algorithm>
 #include <vector>
 #include <map>
+#include <QString>
+#include <QTextEdit>
 
 
 // 累加器类
@@ -28,6 +30,8 @@ public:
     void change(Date m_lastDate, double m_value);
     // 数值重置函数
     void reset(Date m_lastDate, double m_value);
+
+
 
 };
 
@@ -59,6 +63,9 @@ public:
 
     // getID
     string* getID();
+
+    // get Info
+    QString getInfo();
 };
 
 // 用户类基类
@@ -76,7 +83,7 @@ class Account
     
 public:    
     // 账目记录
-    static multimap<Date, AccountRecord>recordMap;
+    /*static*/ multimap<Date, AccountRecord>recordMap;
     // Card Exist
     bool has_savings=false;
     bool has_credit=false;
@@ -109,7 +116,9 @@ public:
     // 结算利息函数
     virtual void settle(Date date)=0;
     // 历史流水查询
-    static void query(Date begin_date, Date end_date);
+    /*static*/void query(Date begin_date, Date end_date);
+    // show query result
+    void queryGUI(QDate query_date,QString query_sort_method,QTextEdit* text);
     // Current Month Query
     virtual double getCurMonthBillAmount(Date m_date,string m_bill_kind,string* m_id)=0;
     

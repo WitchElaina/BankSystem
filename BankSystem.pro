@@ -28,6 +28,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     account.cpp \
+	querydialog.cpp \
     register.cpp \
 	withdrawdialog.cpp \
 	# tinyxml2.cpp
@@ -42,6 +43,7 @@ HEADERS += \
 	# login.h \
     logindialog.h \
     mainwindow.h \
+	querydialog.h \
     register.h \
 	withdrawdialog.h \
 	# tinyxml2.h
@@ -52,6 +54,7 @@ FORMS += \
 	createsavaccountdialog.ui \
     logindialog.ui \
     mainwindow.ui \
+	querydialog.ui \
     register.ui \
     withdrawdialog.ui
 

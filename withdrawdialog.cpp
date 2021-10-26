@@ -1,5 +1,7 @@
 #include "withdrawdialog.h"
 #include "ui_withdrawdialog.h"
+#include <QDate>
+
 
 
 WithdrawDialog::WithdrawDialog(QWidget *parent) :
@@ -7,6 +9,7 @@ WithdrawDialog::WithdrawDialog(QWidget *parent) :
     ui(new Ui::WithdrawDialog)
 {
     ui->setupUi(this);
+
 }
 
 WithdrawDialog::~WithdrawDialog()
@@ -14,10 +17,34 @@ WithdrawDialog::~WithdrawDialog()
     delete ui;
 }
 
+void WithdrawDialog::setDate(Date m_date)
+{
+    year=m_date.getYear();
+    month=m_date.getMonth();
+    day=m_date.getDay();
+    QDate date_shown;
+    m_date.setDate(date_shown);
+    QString temp;
+    temp.setNum(day);
+    ui->day_input->setText(temp);
+    temp.setNum(month);
+    ui->month_input->setText(temp);
+    temp.setNum(year);
+    ui->year_input->setText(temp);
+
+}
+
 bool WithdrawDialog::verifyInput()
 {
     Date* input_date=new Date(year,month,day);
     bool result=input_date->isValid();
+
+    if(desc.empty())
+        result=false;
+
+    if(ui->amount_input->text().isNull())
+        result=false;
+
     delete input_date;
 
     if(result)

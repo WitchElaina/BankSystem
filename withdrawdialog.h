@@ -8,6 +8,7 @@
 #include "config.h"
 
 
+
 namespace Ui {
 class WithdrawDialog;
 }
@@ -26,8 +27,7 @@ public:
     explicit WithdrawDialog(QWidget *parent = nullptr);
     ~WithdrawDialog();
 
-    // set Date
-    void setDate();
+
 
     //set Amount
     void setAmount();
@@ -38,7 +38,11 @@ public:
     // input verify
     bool verifyInput();
 
+    // set Date
+    void setDate(Date m_date);
+
 private slots:
+
     void on_year_input_textChanged(const QString &arg1);
 
     void on_month_input_textChanged(const QString &arg1);

@@ -5,10 +5,12 @@
 #include "commandtranslator.h"
 
 
+
 #include <QFile>
 #include <QDebug>
 #include <QMessageBox>
 #include <QDate>
+
 
 
 #include <vector>
@@ -28,7 +30,8 @@ vector<Account *> accounts;//创建账户数组，元素个数为0
 //Account* accounts[3];//创建账户数组，元素个数为0
 Account* default_account=new SavingsAccount (date,"dafault_account",0);
 CommandTranslator cmd_translator;
-double total_income=0,total_expend=0,total_temp;
+double total_income=0,total_expend=0,total_temp=0;
+QDate qdate_temp;
 
 
 
@@ -59,6 +62,7 @@ void MainWindow::flashuserData()
     QString info;
     string* id_ptr;
 
+
     //SavingsAcc info
     if (accounts[DEFAULT_ACCOUNT_INDEX]->has_savings)
     {
@@ -75,13 +79,13 @@ void MainWindow::flashuserData()
         total_temp=accounts[SAVINGS_ACCOUNT_INDEX]->getCurMonthBillAmount(date,"deposite",id_ptr);
         info.setNum(total_temp);
         ui->usr_sav_month_income->setText(info);
-        total_income+=total_temp;
+        total_income=total_temp;
 
         // user savings account current month expend
         total_temp=accounts[SAVINGS_ACCOUNT_INDEX]->getCurMonthBillAmount(date,"withdraw",id_ptr);
         info.setNum(total_temp);
         ui->usr_sav_month_expend->setText(info);
-        total_expend+=total_temp;
+        total_expend=total_temp;
 
         // reset total temp
         total_temp=0;
@@ -108,13 +112,13 @@ void MainWindow::flashuserData()
         total_temp=accounts[CREDIT_ACCOUNT_INDEX]->getCurMonthBillAmount(date,"deposite",id_ptr);
         info.setNum(total_temp);
         ui->usr_cre_month_income->setText(info);
-        total_income+=total_temp;
+        total_income=total_temp;
 
         // user credit account current month expend
         total_temp=accounts[CREDIT_ACCOUNT_INDEX]->getCurMonthBillAmount(date,"withdraw",id_ptr);
         info.setNum(total_temp);
         ui->usr_cre_month_expend->setText(info);
-        total_expend+=total_temp;
+        total_expend=total_temp;
 
         // reset total temp
         total_temp=0;
@@ -168,7 +172,15 @@ void MainWindow::flashGUI()
         ui->pushButton_cre_deposite->setEnabled(false);
         ui->pushButton_cre_withdraw->setEnabled(false);
     }
+
+    date.setDate(qdate_temp);
+    ui->dateEdit->setDate(qdate_temp);
 }
+
+//void MainWindow::queryResult(QDate query_date, QString query_account, QString query_sort_method)
+//{
+
+//}
 
 
 void MainWindow::userInit(LogInDialog *m_login_dialog)
@@ -223,7 +235,6 @@ void MainWindow::userInit(LogInDialog *m_login_dialog)
         double amount, credit, rate, fee;
         string id, desc;
         Account* account;
-        QDate new_date;
         Date date1, date2;
 
         if(!(usr_cmd>>cmd))
@@ -294,7 +305,7 @@ void MainWindow::userInit(LogInDialog *m_login_dialog)
         case 'q'://查询一段时间内的账目
            date1 = Date::read();
            date2 = Date::read();
-           Account::query(date1, date2);
+//           Account::query(date1, date2);
            break;
 
         case 'j'://new cmd, jump to specific date
@@ -341,6 +352,7 @@ void MainWindow::on_pushButton_logout_clicked()
 void MainWindow::on_pushButton_sav_deposite_clicked()
 {
     WithdrawDialog *withdraw_window=new WithdrawDialog;
+    withdraw_window->setDate(date);
     withdraw_window->exec();
     if(withdraw_window->verifyInput())
     {
@@ -356,6 +368,7 @@ void MainWindow::on_pushButton_sav_deposite_clicked()
 void MainWindow::on_pushButton_sav_withdraw_clicked()
 {
     WithdrawDialog *withdraw_window=new WithdrawDialog;
+    withdraw_window->setDate(date);
     withdraw_window->exec();
     if(withdraw_window->verifyInput())
     {
@@ -371,6 +384,7 @@ void MainWindow::on_pushButton_sav_withdraw_clicked()
 void MainWindow::on_pushButton_cre_deposite_clicked()
 {
     WithdrawDialog *withdraw_window=new WithdrawDialog;
+    withdraw_window->setDate(date);
     withdraw_window->exec();
     if(withdraw_window->verifyInput())
     {
@@ -387,6 +401,7 @@ void MainWindow::on_pushButton_cre_deposite_clicked()
 void MainWindow::on_pushButton_cre_withdraw_clicked()
 {
     WithdrawDialog *withdraw_window=new WithdrawDialog;
+    withdraw_window->setDate(date);
     withdraw_window->exec();
     if(withdraw_window->verifyInput())
     {
@@ -456,17 +471,55 @@ void MainWindow::on_dateEdit_userDateChanged(const QDate &qdate)
         return ;
     }
 
+
+
+    // settle
+    if(from_qdate.getMonth()!=date.getMonth()||from_qdate.getYear()!=date.getYear())
+    {
+        if(accounts[DEFAULT_ACCOUNT_INDEX]->has_savings)
+            accounts[SAVINGS_ACCOUNT_INDEX]->settle(from_qdate);
+
+        if(accounts[DEFAULT_ACCOUNT_INDEX]->has_credit)
+            accounts[CREDIT_ACCOUNT_INDEX]->settle(from_qdate);
+
+    }
+
     // set System Date
     date.resetDate(qdate);
 
     // trans GUI operation to command lines
     cmd_translator.dateChangeGUI(ui->usr_name->text().toStdString(),date.getYear(),date.getMonth(),date.getDay());
 
-    // settle
-    for (vector<Account*>::iterator iter = accounts.begin(); iter != accounts.end(); ++iter)
-        (*iter)->settle(date);
-
     flashuserData();
     flashGUI();
 
+}
+
+void MainWindow::on_pushButton_print_record_clicked()
+{
+    QueryDialog *query_window=new QueryDialog;
+    query_window->exec();
+    ui->queryResult->clear();
+    ui->queryResult->append("Date\tAmount\tBalance\tDescripiton");
+    qDebug()<<QString((ui->comboBox_select_rec_type->currentIndex()));
+    if(ui->comboBox_select_rec_type->currentIndex()<=1)
+    {
+        accounts[ui->comboBox_select_rec_type->currentIndex()]->queryGUI(query_window->query_date,ui->comboBox->currentText(),ui->queryResult);
+    }
+    else
+    {
+        accounts[SAVINGS_ACCOUNT_INDEX]->queryGUI(query_window->query_date,ui->comboBox->currentText(),ui->queryResult);
+        accounts[CREDIT_ACCOUNT_INDEX]->queryGUI(query_window->query_date,ui->comboBox->currentText(),ui->queryResult);
+    }
+
+}
+
+void MainWindow::on_pushButton_change_password_pressed()
+{
+    ui->pushButton_change_password->setText(">_<Comming Soon>_<");
+}
+
+void MainWindow::on_pushButton_change_password_released()
+{
+    ui->pushButton_change_password->setText("修改密码");
 }

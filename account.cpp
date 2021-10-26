@@ -1,11 +1,12 @@
 #include "account.h"
 #include "config.h"
+#include <qdebug.h>
 
 // 初始化系统总金额
 double Account::total=0;
 
 // 初始化历史流水
-multimap<Date,AccountRecord> Account::recordMap;
+//multimap<Date,AccountRecord> Account::recordMap;
 
 // 保留两位小数
 double set_precision_2(double original_num)
@@ -101,6 +102,27 @@ string* AccountRecord::getID()
     return id;
 }
 
+QString AccountRecord::getInfo()
+{
+    QString temp,ans;
+    temp.setNum(date.getYear());
+    ans=temp;
+    temp.setNum(date.getMonth());
+    ans+="/"+temp;
+    temp.setNum(date.getDay());
+    ans+="/"+temp;
+    temp.setNum(amount);
+    ans+="\t"+temp;
+    temp.setNum(balance);
+    ans+="\t"+temp;
+    temp=temp.fromStdString(desc);
+    qDebug()<<temp;
+    ans+="\t"+temp;
+
+    return ans;
+
+}
+
 // 账户基类方法
 // 构造函数
 Account::Account(Date m_date,string m_id)
@@ -114,6 +136,8 @@ Account::Account(Date m_date,string m_id)
     // 打印创建成功信息
     m_date.show();
     cout<<"\t#"<<id+" created"<<endl;
+
+
 }
 
 Account::~Account() {}
@@ -165,6 +189,22 @@ void Account::query(Date begin_date, Date end_date)
         // check date
         if((it->first)<=(end_date)&&(begin_date)<=(it->first))
             it->second.show();
+    }
+}
+
+void Account::queryGUI(QDate query_date, QString query_sort_method, QTextEdit* text)
+{
+
+    multimap<Date,AccountRecord>::iterator it;
+    Date begin_date;
+    begin_date.resetDate(query_date);
+    Date end_date(begin_date.getYear(),begin_date.getMonth()+1,1);
+
+    for(it=recordMap.begin();it!=recordMap.end();it++)
+    {
+        // check date
+        if((it->first)<(end_date)&&(begin_date)<=(it->first))
+            text->append(it->second.getInfo());
     }
 }
 
@@ -388,6 +428,8 @@ void CreditAccount::settle(Date m_date)
     // 将利息与年费记入消费记录
     if(annual_fee)
         withdraw(m_date, CREDIT_ACCOUNT_ANNUAL_FEE, "annual fee");
+
+    a_date=m_date;
     
 }
 

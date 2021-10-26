@@ -9,54 +9,42 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1008</width>
-    <height>643</height>
+    <width>950</width>
+    <height>646</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>BankSystem</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_8">
-    <item>
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
+   <layout class="QHBoxLayout" name="horizontalLayout_8">
     <item>
      <widget class="QWidget" name="widget_12" native="true">
       <layout class="QHBoxLayout" name="horizontalLayout_6">
-       <item>
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
        <item>
         <widget class="QWidget" name="widget_10" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
            <widget class="QWidget" name="widget" native="true">
             <layout class="QGridLayout" name="gridLayout">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_usr_name">
+               <property name="text">
+                <string>用户名称</string>
+               </property>
+              </widget>
+             </item>
              <item row="3" column="0">
               <widget class="QLabel" name="label_usr_expend">
                <property name="text">
                 <string>当月支出</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLineEdit" name="usr_balance">
+               <property name="readOnly">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -77,8 +65,8 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="1">
-              <widget class="QLineEdit" name="usr_balance">
+             <item row="2" column="1">
+              <widget class="QLineEdit" name="month_income">
                <property name="readOnly">
                 <bool>true</bool>
                </property>
@@ -91,24 +79,27 @@
                </property>
               </widget>
              </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_usr_name">
-               <property name="text">
-                <string>用户名称</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QLineEdit" name="month_income">
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
              <item row="2" column="0">
               <widget class="QLabel" name="label_usr_income">
                <property name="text">
                 <string>当月收入</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QDateEdit" name="dateEdit">
+               <property name="currentSection">
+                <enum>QDateTimeEdit::YearSection</enum>
+               </property>
+               <property name="calendarPopup">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_2">
+               <property name="text">
+                <string>日期设置</string>
                </property>
               </widget>
              </item>
@@ -354,114 +345,116 @@
          </layout>
         </widget>
        </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="widget_13" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QWidget" name="widget_13" native="true">
-         <layout class="QHBoxLayout" name="horizontalLayout">
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
+          <string>流水</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_7">
           <item>
-           <widget class="QGroupBox" name="groupBox_3">
-            <property name="title">
-             <string>流水</string>
+           <widget class="QTextEdit" name="queryResult">
+            <property name="enabled">
+             <bool>true</bool>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_7">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Sunken</enum>
+            </property>
+            <property name="undoRedoEnabled">
+             <bool>false</bool>
+            </property>
+            <property name="lineWrapMode">
+             <enum>QTextEdit::NoWrap</enum>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_8" native="true">
+            <layout class="QVBoxLayout" name="verticalLayout_5">
              <item>
-              <widget class="QTextEdit" name="textEdit">
-               <property name="undoRedoEnabled">
-                <bool>false</bool>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
+              <widget class="QWidget" name="widget_6" native="true">
+               <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <item>
+                 <widget class="QLabel" name="label_15">
+                  <property name="text">
+                   <string>查询账户</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="comboBox_select_rec_type">
+                  <item>
+                   <property name="text">
+                    <string>储蓄卡</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>信用卡</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>所有账户</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
               </widget>
              </item>
              <item>
-              <widget class="QWidget" name="widget_8" native="true">
-               <layout class="QVBoxLayout" name="verticalLayout_5">
+              <widget class="QWidget" name="widget_14" native="true">
+               <layout class="QHBoxLayout" name="horizontalLayout_7">
                 <item>
-                 <widget class="QWidget" name="widget_15" native="true">
-                  <layout class="QHBoxLayout" name="horizontalLayout_8">
-                   <item>
-                    <widget class="QLabel" name="label_2">
-                     <property name="text">
-                      <string>日期设置</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QDateEdit" name="dateEdit"/>
-                   </item>
-                  </layout>
+                 <widget class="QLabel" name="label">
+                  <property name="text">
+                   <string>排序方式</string>
+                  </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QWidget" name="widget_6" native="true">
-                  <layout class="QHBoxLayout" name="horizontalLayout_4">
-                   <item>
-                    <widget class="QLabel" name="label_15">
-                     <property name="text">
-                      <string>查询账户</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QComboBox" name="comboBox_select_rec_type">
-                     <item>
-                      <property name="text">
-                       <string>储蓄卡</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>信用卡</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>所有账户</string>
-                      </property>
-                     </item>
-                    </widget>
-                   </item>
-                  </layout>
+                 <widget class="QComboBox" name="comboBox">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>时间顺序</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>数额大小</string>
+                   </property>
+                  </item>
                  </widget>
                 </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QWidget" name="widget_7" native="true">
+               <layout class="QHBoxLayout" name="horizontalLayout_5">
                 <item>
-                 <widget class="QWidget" name="widget_14" native="true">
-                  <layout class="QHBoxLayout" name="horizontalLayout_7">
-                   <item>
-                    <widget class="QLabel" name="label">
-                     <property name="text">
-                      <string>排序方式</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QComboBox" name="comboBox">
-                     <item>
-                      <property name="text">
-                       <string>时间顺序</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>数额大小</string>
-                      </property>
-                     </item>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QWidget" name="widget_7" native="true">
-                  <layout class="QHBoxLayout" name="horizontalLayout_5">
-                   <item>
-                    <widget class="QPushButton" name="pushButton_print_record">
-                     <property name="text">
-                      <string>查询流水</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
+                 <widget class="QPushButton" name="pushButton_print_record">
+                  <property name="text">
+                   <string>查询流水</string>
+                  </property>
                  </widget>
                 </item>
                </layout>
@@ -473,34 +466,8 @@
          </layout>
         </widget>
        </item>
-       <item>
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
       </layout>
      </widget>
-    </item>
-    <item>
-     <spacer name="verticalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
     </item>
    </layout>
   </widget>
@@ -509,7 +476,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1008</width>
+     <width>950</width>
      <height>24</height>
     </rect>
    </property>

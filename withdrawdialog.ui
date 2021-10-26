@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>324</width>
-    <height>261</height>
+    <width>303</width>
+    <height>298</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -27,16 +27,31 @@
        <widget class="QWidget" name="widget" native="true">
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
-          <widget class="QLabel" name="label">
+          <widget class="QLabel" name="label_6">
            <property name="text">
-            <string>日期</string>
+            <string>今天是</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QLineEdit" name="year_input">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="mouseTracking">
+            <bool>false</bool>
+           </property>
            <property name="maxLength">
             <number>4</number>
+           </property>
+           <property name="frame">
+            <bool>false</bool>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
@@ -49,8 +64,17 @@
          </item>
          <item>
           <widget class="QLineEdit" name="month_input">
+           <property name="mouseTracking">
+            <bool>false</bool>
+           </property>
            <property name="maxLength">
             <number>2</number>
+           </property>
+           <property name="frame">
+            <bool>false</bool>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
@@ -63,8 +87,23 @@
          </item>
          <item>
           <widget class="QLineEdit" name="day_input">
+           <property name="mouseTracking">
+            <bool>false</bool>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::StrongFocus</enum>
+           </property>
+           <property name="autoFillBackground">
+            <bool>false</bool>
+           </property>
            <property name="maxLength">
             <number>2</number>
+           </property>
+           <property name="frame">
+            <bool>false</bool>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
@@ -86,6 +125,9 @@
            <property name="maxLength">
             <number>10</number>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
           </widget>
          </item>
         </layout>
@@ -105,6 +147,9 @@
           <widget class="QLineEdit" name="desc_input">
            <property name="maxLength">
             <number>40</number>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
            </property>
           </widget>
          </item>

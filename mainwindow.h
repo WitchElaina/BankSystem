@@ -8,6 +8,8 @@
 #include "ui_createsavaccountdialog.h"
 #include "createcreaccountdialog.h"
 #include "ui_createcreaccountdialog.h"
+#include "querydialog.h"
+#include "ui_querydialog.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -33,6 +35,8 @@ public:
 
     // flash GUI
     void flashGUI();
+
+
 private slots:
 
 
@@ -51,6 +55,12 @@ private slots:
     void on_pushButton_create_savings_acount_clicked();
 
     void on_dateEdit_userDateChanged(const QDate &date);
+
+    void on_pushButton_print_record_clicked();
+
+    void on_pushButton_change_password_pressed();
+
+    void on_pushButton_change_password_released();
 
 private:
     Ui::MainWindow *ui;
