@@ -18,6 +18,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    // show messagebox with custom string
+    void showMessageBox(QString m_msg);
+
     // initialize user data
     void userInit(LogInDialog *m_login_dialog);
 
@@ -34,6 +37,10 @@ private slots:
     void on_pushButton_sav_deposite_clicked();
 
     void on_pushButton_sav_withdraw_clicked();
+
+    void on_pushButton_cre_deposite_clicked();
+
+    void on_pushButton_cre_withdraw_clicked();
 
 private:
     Ui::MainWindow *ui;

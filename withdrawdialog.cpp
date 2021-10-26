@@ -71,8 +71,10 @@ void WithdrawDialog::on_desc_input_textChanged(const QString &arg1)
 void WithdrawDialog::on_buttonBox_accepted()
 {
     // validat inputs
-    if(verifyInput())
+    if(!verifyInput())
     {
-
+        QMessageBox msg;
+        msg.setText("Invalid input!");
+        msg.exec();
     }
 }

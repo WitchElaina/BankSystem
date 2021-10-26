@@ -4,6 +4,8 @@
 #include "withdrawdialog.h"
 #include "ui_withdrawdialog.h"
 
+#include <QMessageBox>
+
 #include <fstream>
 using namespace std;
 
@@ -23,6 +25,9 @@ public:
 
     // GUI deposite
     void depositeGUI(string cmd_username,int cmd_index,double cmd_amount,string cmd_desc);
+
+    // show messagebox with custom string
+    void showMessageBox(QString m_msg);
 
 };
 
