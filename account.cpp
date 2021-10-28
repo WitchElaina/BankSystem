@@ -5,6 +5,8 @@
 // 初始化系统总金额
 double Account::total=0;
 
+
+
 // 初始化历史流水
 //multimap<Date,AccountRecord> Account::recordMap;
 
@@ -192,7 +194,7 @@ void Account::query(Date begin_date, Date end_date)
     }
 }
 
-void Account::queryGUI(QDate query_date, QString query_sort_method, QTextEdit* text)
+void Account::queryGUI(QDate query_date, multimap<Date, QString> &date_append_temp, multimap<double, QString> &balance_append_temp)
 {
 
     multimap<Date,AccountRecord>::iterator it;
@@ -200,12 +202,20 @@ void Account::queryGUI(QDate query_date, QString query_sort_method, QTextEdit* t
     begin_date.resetDate(query_date);
     Date end_date(begin_date.getYear(),begin_date.getMonth()+1,1);
 
+
+
     for(it=recordMap.begin();it!=recordMap.end();it++)
     {
         // check date
         if((it->first)<(end_date)&&(begin_date)<=(it->first))
-            text->append(it->second.getInfo());
+        {
+            //text->append(it->second.getInfo());
+            date_append_temp.insert(pair<Date, QString>(it->first,it->second.getInfo()));
+            balance_append_temp.insert(pair<double, QString>(it->second.getAmount(),it->second.getInfo()));
+        }
     }
+
+
 }
 
 // 储蓄卡类方法

@@ -18,6 +18,8 @@ public:
     ~QueryDialog();
 
     QDate query_date;
+
+    void setDefaultDateToSystemDate();
 private slots:
     void on_buttonBox_accepted();
 

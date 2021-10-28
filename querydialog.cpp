@@ -6,11 +6,17 @@ QueryDialog::QueryDialog(QWidget *parent) :
     ui(new Ui::QueryDialog)
 {
     ui->setupUi(this);
+
 }
 
 QueryDialog::~QueryDialog()
 {
     delete ui;
+}
+
+void QueryDialog::setDefaultDateToSystemDate()
+{
+    ui->dateEdit->setDate(query_date);
 }
 
 void QueryDialog::on_buttonBox_accepted()

@@ -32,6 +32,10 @@ Account* default_account=new SavingsAccount (date,"dafault_account",0);
 CommandTranslator cmd_translator;
 double total_income=0,total_expend=0,total_temp=0;
 QDate qdate_temp;
+// query text temp
+multimap<Date,QString> date_append_temp;
+multimap<double,QString> balance_append_temp;
+//vector<QString> append_temp;
 
 
 
@@ -498,18 +502,40 @@ void MainWindow::on_dateEdit_userDateChanged(const QDate &qdate)
 void MainWindow::on_pushButton_print_record_clicked()
 {
     QueryDialog *query_window=new QueryDialog;
+    query_window->query_date.setDate(date.getYear(),date.getMonth(),1);
+    query_window->setDefaultDateToSystemDate();
     query_window->exec();
     ui->queryResult->clear();
     ui->queryResult->append("Date\tAmount\tBalance\tDescripiton");
+    date_append_temp.clear();
+    balance_append_temp.clear();
     qDebug()<<QString((ui->comboBox_select_rec_type->currentIndex()));
     if(ui->comboBox_select_rec_type->currentIndex()<=1)
     {
-        accounts[ui->comboBox_select_rec_type->currentIndex()]->queryGUI(query_window->query_date,ui->comboBox->currentText(),ui->queryResult);
+        accounts[ui->comboBox_select_rec_type->currentIndex()]->queryGUI(query_window->query_date,date_append_temp,balance_append_temp);
     }
     else
     {
-        accounts[SAVINGS_ACCOUNT_INDEX]->queryGUI(query_window->query_date,ui->comboBox->currentText(),ui->queryResult);
-        accounts[CREDIT_ACCOUNT_INDEX]->queryGUI(query_window->query_date,ui->comboBox->currentText(),ui->queryResult);
+        accounts[SAVINGS_ACCOUNT_INDEX]->queryGUI(query_window->query_date,date_append_temp,balance_append_temp);
+        accounts[CREDIT_ACCOUNT_INDEX]->queryGUI(query_window->query_date,date_append_temp,balance_append_temp);
+    }
+
+    // sort
+    if(ui->comboBox->currentIndex()==0)
+    {
+
+        // sort by time
+        multimap<Date,QString>::iterator it;
+        for(it=date_append_temp.begin();it!=date_append_temp.end();it++)
+            ui->queryResult->append(it->second);
+
+    }
+    else
+    {
+        // sort by amount
+        multimap<double,QString>::iterator it;
+        for(it=balance_append_temp.begin();it!=balance_append_temp.end();it++)
+            ui->queryResult->append(it->second);
     }
 
 }

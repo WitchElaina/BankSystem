@@ -8,7 +8,7 @@
 #include <map>
 #include <QString>
 #include <QTextEdit>
-
+#include <QTableWidget>
 
 // 累加器类
 class Accumulator
@@ -118,7 +118,7 @@ public:
     // 历史流水查询
     /*static*/void query(Date begin_date, Date end_date);
     // show query result
-    void queryGUI(QDate query_date,QString query_sort_method,QTextEdit* text);
+    void queryGUI(QDate query_date,multimap<Date,QString> &date_append_temp,multimap<double,QString> &balance_append_temp);
     // Current Month Query
     virtual double getCurMonthBillAmount(Date m_date,string m_bill_kind,string* m_id)=0;
     

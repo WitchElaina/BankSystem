@@ -45,6 +45,9 @@ bool WithdrawDialog::verifyInput()
     if(ui->amount_input->text().isNull())
         result=false;
 
+    if(ui->amount_input->text().toDouble()==0)
+        result=false;
+
     delete input_date;
 
     if(result)
