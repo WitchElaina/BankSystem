@@ -1,84 +1,64 @@
 # BankSystem
 C++大作业，基于QT开发的银行系统
 
-## Logo更新！
-<img src="https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/SheepBankLogo.2phrk3zlrne0.png" alt="SheepBankLogo" style="zoom:50%;" />
-
-**目前已经实现的功能：**
+已经支持的功能：
 - 用户登录
 - 用户注册
 - 账户数据库读写
-
-**正在新建文件夹的功能：**
 - 账户数据存储
 - 账户数据打印
 - 存取款
 - 查询指定日期流水
-- 忘记密码
 - 账户登出
 - 注销账户
-- 安装引导程序
+- Mac安装程序
 
-----
-## 题目要求
-### **完善1：加入异常处理机制。**
+## 使用方法
 
-**问题：在之前版本的个人银行账户管理系统中，在用户的输入完全符合要求时能够正常工作，但当用户的输入不符合要求时，就会出现一些问题。**
+### Mac OS安装
 
-- **例如，如果用户在查询账户时输入了一个不合法的日期，在Date的构造函数中将直接终止程序，因为Date构造函数并不知该如何处理这个错误。**
+双击`bank_system_mac_v1.0.dmg`，根据提示拖动完成安装.
 
-- **再例如，如果用户试图从一个账户中超额取款而失败，虽然错误信息能够输出，账户状态也不会被改变，但该条命令还是会被写到文件中，因为主函数并不知道在处理取款命令时发生了错误。**
+![install](https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/BankSystem/install.ef49d454hxs.png)
 
-- **如何改进这类问题？**
+### Windows安装
 
-**使用C++的异常处理机制来处理这些日期不合法，额度超出等错误。**
+解压`bank_system_win_v1.0.zip`，双击`BankSystem.exe`运行.
 
--  **在检测到错误的地方将异常抛出。**
-- *由主函数对这些异常进行统一处理。
+### 选择文件夹
 
-**日期构造或者输入错误**
+进入程序后会提示选择用以存放用户数据的文件夹, 在弹出的窗口中选择即可
 
-- **在构造或输入一个Date对象时如发生了错误。**
+![select_dir](https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/BankSystem/select_dir.2a6kazvtegpw.jpg)
 
-- **直接使用标准程序库中的runtime_error构造异常并抛出**
+### 登录
 
-- ``#include <stdexcept>``
+选择好文件夹后会进入登录界面, 首次使用需要点击`Register`按钮注册账户, 完成后即可登录进入主界面
 
-- **用于使用标准程序库中的runtime_error构造异常并抛出。**
+![login](https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/BankSystem/login.x9fq67puxdc.png)
 
-**账户错误**
+### 主界面
 
-- **在账户类中如发生了错误，由于希望异常信息能够标识是哪个账户发生了错误，因此：**
+![mainwindow](https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/BankSystem/mainwindow.1cj5t6522c1s.png)
 
-	- **本程序中创建一个类AccoutException，**
+进入后程序会自动恢复用户数据, 新用户需要点击`创建信用卡`和`创建储蓄卡`按钮创建自己的两类账户, 创建完成后相应区块按钮将开放操作权限, 用户可以使用账户进行存取款
 
-	- **该类从runtime_error派生**
+![sav](https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/BankSystem/sav.iu4ygowjm5c.png)
 
-	- **该类中保存了一个Account型常指针，指向发生错误的账户。**
+![cre](https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/BankSystem/cre.1ia18ew82fcw.png)
 
-- **这样在主函数中，输出错误信息的同时也可以将账户输出。**
+### 切换日期
 
+点击主界面左侧的`日期设置`, 展开日期选择菜单即可切换日期, 系统会自动处理利息与年费
 
+![change_date](https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/BankSystem/change_date.4dwxm9uhvme0.png)
 
-### **完善2：增加界面、加入查询排序等操作**
+### 查询流水
 
-**银行系统已经可以动态地建立不同的账号，并对两类账户完成存钱、取钱、透支，还钱等操作。**
+在主界面右侧选择**查询账户**和**流水排序**, 点击`查询流水`, 即可查看指定日期的账户流水
 
-**使用现有程序，记录每个账户3个月内的操作，每个月每个账户都至少有5笔以上的操作记录。**
+![query](https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/BankSystem/query.6dyvaz3ypj40.png)
 
-**进一步完成如下操作：**
+![querydemo](https://cdn.jsdelivr.net/gh/LinYuanChan/image-hosting@master/BankSystem/querydemo.4yov6w3wwe80.png)
 
-1. **增加操作方便的界面，提供用户注册和登录界面。**
-
-2. **每个用户登陆后可以创建自己的两类账户，并进行操作，完成3个月内的操作记录。**
-
-3. **每个用户登陆后需要提示该用户需要处理的信息；**
-	
-	- **比如还款的提示；**
-	
-	- **当月的账户统计，包括收入和支出的统计。**
-	
-4. **可以查询某个月按照时间排序的账户查询信息。**
-
-5. **可以查询某个月按照交易金额从大到小排序的账户查询信息**
 
