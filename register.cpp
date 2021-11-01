@@ -1,12 +1,7 @@
 #include "register.h"
 #include "ui_register.h"
 
-#include <QDebug>
-#include <QFile>
-#include <fstream>
-#include <QMessageBox>
-#include <QFileDialog>
-#include "config.h"
+
 using namespace std;
 
 const QString invalid_chars[10]={" ","\\","/","[","]",",",":",";","username","password"};
@@ -27,7 +22,7 @@ Register::~Register()
 
 bool Register::findUsername(QString m_usrname)
 {
-    // QString filename=QFileDialog::getOpenFileName(this,tr("Select UserData File"));
+    //QString filename=QFileDialog::getOpenFileName(this,tr("Select UserData File"));
     // check UserData file
     QFile usr_data_file(USER_DATA_FILE);
     if(usr_data_file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -99,6 +94,8 @@ void Register::on_buttonBox_accepted()
     // press the register button
     qDebug()<<"Submit the username and password\nUsername: "<<username<<"\nPassword: "<<password;
 
+
+
     // Judge if the username valid
     qDebug()<<"Judging if the username valid...";
     if(spaceAndSignJudger(username))
@@ -107,8 +104,8 @@ void Register::on_buttonBox_accepted()
         QMessageBox msgBox;
         msgBox.setText("用户名包含非法字符!");
         msgBox.exec();
-        return ;
 
+        return ;
     }
 
     // Judge if the password valid
@@ -118,6 +115,7 @@ void Register::on_buttonBox_accepted()
         QMessageBox msgBox;
         msgBox.setText("密码包含非法字符!");
         msgBox.exec();
+
         return ;
     }
 
@@ -135,7 +133,9 @@ void Register::on_buttonBox_accepted()
         QMessageBox msgBox;
         msgBox.setText("用户名已存在!无法完成注册");
         msgBox.exec();
-        exit(0);
+
+        return ;
+
     }
 
     else
@@ -163,8 +163,13 @@ void Register::on_buttonBox_accepted()
         // replace the original QHash data
         usr_data_file.close();
 
-
+        register_status=true;
 
     }
 
+}
+
+void Register::on_buttonBox_rejected()
+{
+    register_status=true;
 }

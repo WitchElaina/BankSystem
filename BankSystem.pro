@@ -23,7 +23,6 @@ SOURCES += \
 	createcreaccountdialog.cpp \
 	createsavaccountdialog.cpp \
     date.cpp \
-	# login.cpp \
     logindialog.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -31,7 +30,7 @@ SOURCES += \
 	querydialog.cpp \
     register.cpp \
 	withdrawdialog.cpp \
-	# tinyxml2.cpp
+
 
 HEADERS += \
     account.h \
@@ -40,16 +39,14 @@ HEADERS += \
 	createcreaccountdialog.h \
 	createsavaccountdialog.h \
     date.h \
-	# login.h \
     logindialog.h \
     mainwindow.h \
 	querydialog.h \
     register.h \
 	withdrawdialog.h \
-	# tinyxml2.h
+
 
 FORMS += \
-	# login.ui \
 	createcreaccountdialog.ui \
 	createsavaccountdialog.ui \
     logindialog.ui \

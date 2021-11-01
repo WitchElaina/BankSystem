@@ -1,21 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "account.h"
-#include "config.h"
-#include "commandtranslator.h"
 
-
-
-#include <QFile>
-#include <QDebug>
-#include <QMessageBox>
-#include <QDate>
-
-
-
-#include <vector>
-#include <algorithm>
-#include <fstream>
 using namespace std;
 
 struct deleter {
@@ -23,6 +8,16 @@ struct deleter {
         delete p;
 
     }
+};
+
+
+QString error_msg[]={
+    "Error 0: 余额不足!",
+    "Error 1: 取款数额小于0",
+    "Error 2: 存款数额小于0",
+    "Error 3: 还款数额小于0",
+    "Error 4: 消费数额小于0",
+    "Error 5: 额度不足"
 };
 
 Date date(2008, 11, 1);//起始日期
@@ -346,9 +341,10 @@ void MainWindow::userInit(LogInDialog *m_login_dialog)
 
 void MainWindow::on_pushButton_logout_clicked()
 {
-    QMessageBox msg;
-    msg.setText("Exited!Bye~");
-    msg.exec();
+    showMessageBox("Exited!Bye~");
+//    QMessageBox msg;
+//    msg.setText("Exited!Bye~");
+//    msg.exec();
     exit(0);
 
 }
@@ -357,11 +353,19 @@ void MainWindow::on_pushButton_sav_deposite_clicked()
 {
     WithdrawDialog *withdraw_window=new WithdrawDialog;
     withdraw_window->setDate(date);
+    withdraw_window->setWindowTitle("储蓄卡存款");
     withdraw_window->exec();
     if(withdraw_window->verifyInput())
     {
-        cmd_translator.depositeGUI(ui->usr_name->text().toStdString(),SAVINGS_ACCOUNT_INDEX,withdraw_window->amount,withdraw_window->desc);
-        accounts[SAVINGS_ACCOUNT_INDEX]->deposit(Date(withdraw_window->year,withdraw_window->month,withdraw_window->day),withdraw_window->amount,withdraw_window->desc);
+        try {
+            accounts[SAVINGS_ACCOUNT_INDEX]->deposit(Date(withdraw_window->year,withdraw_window->month,withdraw_window->day),withdraw_window->amount,withdraw_window->desc);
+        } catch (int i) {
+            qDebug()<<error_msg[i];
+            showMessageBox(error_msg[i]);
+            return ;
+        }
+
+        cmd_translator.depositeGUI(ui->usr_name->text().toStdString(),SAVINGS_ACCOUNT_INDEX,withdraw_window->amount,withdraw_window->desc);       
     }
 
     delete withdraw_window;
@@ -373,11 +377,18 @@ void MainWindow::on_pushButton_sav_withdraw_clicked()
 {
     WithdrawDialog *withdraw_window=new WithdrawDialog;
     withdraw_window->setDate(date);
+    withdraw_window->setWindowTitle("储蓄卡支出");
     withdraw_window->exec();
     if(withdraw_window->verifyInput())
     {
+        try {
+            accounts[SAVINGS_ACCOUNT_INDEX]->withdraw(Date(withdraw_window->year,withdraw_window->month,withdraw_window->day),withdraw_window->amount,withdraw_window->desc);
+        } catch (int i) {
+            qDebug()<<error_msg[i];
+            showMessageBox(error_msg[i]);
+            return ;
+        }
         cmd_translator.withdrawGUI(ui->usr_name->text().toStdString(),SAVINGS_ACCOUNT_INDEX,withdraw_window->amount,withdraw_window->desc);
-        accounts[SAVINGS_ACCOUNT_INDEX]->withdraw(Date(withdraw_window->year,withdraw_window->month,withdraw_window->day),withdraw_window->amount,withdraw_window->desc);
     }
 
     delete withdraw_window;
@@ -389,11 +400,19 @@ void MainWindow::on_pushButton_cre_deposite_clicked()
 {
     WithdrawDialog *withdraw_window=new WithdrawDialog;
     withdraw_window->setDate(date);
+    withdraw_window->setWindowTitle("信用卡还款");
     withdraw_window->exec();
     if(withdraw_window->verifyInput())
     {
+        try {
+            accounts[CREDIT_ACCOUNT_INDEX]->deposit(Date(withdraw_window->year,withdraw_window->month,withdraw_window->day),withdraw_window->amount,withdraw_window->desc);
+        } catch (int i) {
+            qDebug()<<error_msg[i];
+            showMessageBox(error_msg[i]);
+            return ;
+        }
         cmd_translator.depositeGUI(ui->usr_name->text().toStdString(),CREDIT_ACCOUNT_INDEX,withdraw_window->amount,withdraw_window->desc);
-        accounts[CREDIT_ACCOUNT_INDEX]->deposit(Date(withdraw_window->year,withdraw_window->month,withdraw_window->day),withdraw_window->amount,withdraw_window->desc);
+
     }
     delete withdraw_window;
     flashuserData();
@@ -406,11 +425,18 @@ void MainWindow::on_pushButton_cre_withdraw_clicked()
 {
     WithdrawDialog *withdraw_window=new WithdrawDialog;
     withdraw_window->setDate(date);
+    withdraw_window->setWindowTitle("信用卡消费");
     withdraw_window->exec();
     if(withdraw_window->verifyInput())
     {
+        try {
+           accounts[CREDIT_ACCOUNT_INDEX]->withdraw(Date(withdraw_window->year,withdraw_window->month,withdraw_window->day),withdraw_window->amount,withdraw_window->desc);
+            } catch (int i) {
+            qDebug()<<error_msg[i];
+            showMessageBox(error_msg[i]);
+            return ;
+        }
         cmd_translator.withdrawGUI(ui->usr_name->text().toStdString(),CREDIT_ACCOUNT_INDEX,withdraw_window->amount,withdraw_window->desc);
-        accounts[CREDIT_ACCOUNT_INDEX]->withdraw(Date(withdraw_window->year,withdraw_window->month,withdraw_window->day),withdraw_window->amount,withdraw_window->desc);
     }
     delete withdraw_window;
     flashuserData();

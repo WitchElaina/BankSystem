@@ -238,6 +238,10 @@ double SavingsAccount::getRate()
 // 存款函数
 void SavingsAccount::deposit(Date m_date, double m_amount,string m_desc)
 {
+    if(m_amount<0)
+        throw 2;    // 存款数额小于0
+
+
     // 更新累加器
     //  核心: 此处更新累加器时, 所使用的value应该是存款之前的账户总额, 因此使用balance作为value, 取款函数同理
     acc.change(m_date, m_amount+getBalance());  
@@ -251,6 +255,12 @@ void SavingsAccount::withdraw(Date m_date,double m_amount,string m_desc)
 {
     // 取款数字需要改变为负数完成运算
     m_amount=-m_amount;
+
+    if(getBalance()+m_amount<0)
+        throw 0;    // 余额不足
+
+    if(m_amount<0)
+        throw 1;    // 取款数额小于0
 
     // 更新累加器
     acc.change(m_date, m_amount+getBalance());  
@@ -379,6 +389,9 @@ double CreditAccount::getAvailableCredit()
 // 还款函数
 void CreditAccount::deposit(Date m_date, double m_amount,string m_desc)
 {
+    if(m_amount<0)
+        throw 3;    // 还款数额小于0
+
     // 更新累加器
     //  核心: 此处更新累加器时, 所使用的value应该是存款之前的账户总额, 因此使用balance作为value, 消费函数同理
     acc.change(m_date, m_amount+getBalance());  
@@ -390,8 +403,15 @@ void CreditAccount::deposit(Date m_date, double m_amount,string m_desc)
 // 消费函数
 void CreditAccount::withdraw(Date m_date,double m_amount,string m_desc)
 {
+
     // 消费数字需要改变为负数完成运算
     m_amount=-m_amount;
+
+    if(m_amount>0)
+        throw 4;    // 消费数额小于0
+
+    if(getCredit()+m_amount<0)
+        throw 5;    // 额度不足
 
     // 减少每月额度
     credit+=m_amount;

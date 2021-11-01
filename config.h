@@ -31,4 +31,11 @@
 #define SYSTEM_MINIMUM_YEAR 1949
 #define SYSTEM_MAXIMUM_YEAR 9999
 
+// includes
+#include <QString>
+#include <stdexcept>
+
+// System file dir
+// QString SYS_DIR;
+
 #endif // CONFIG_H

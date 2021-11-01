@@ -11,6 +11,23 @@
 #include "querydialog.h"
 #include "ui_querydialog.h"
 
+#include "account.h"
+#include "config.h"
+#include "commandtranslator.h"
+
+
+
+#include <QFile>
+#include <QDebug>
+#include <QMessageBox>
+#include <QDate>
+
+
+
+#include <vector>
+#include <algorithm>
+#include <fstream>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

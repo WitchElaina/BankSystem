@@ -118,9 +118,14 @@ void LogInDialog::on_userPassword_textChanged(const QString &arg1)
 void LogInDialog::on_userRegister_clicked()
 {
     qDebug()<<"start resgister";
-    Register *res_ui=new Register;
-    res_ui->exec();
+    Register res_ui;//=new Register;
+    do
+    {
+        res_ui.exec();
+    }while(!res_ui.register_status);
 }
+
+
 
 void LogInDialog::on_buttonBox_accepted()
 {
@@ -149,7 +154,7 @@ void LogInDialog::on_buttonBox_accepted()
             QMessageBox msg;
             msg.setText("Password is wrong!");
             msg.exec();
-            exit(0);
+
         }
     }
     else
@@ -159,7 +164,7 @@ void LogInDialog::on_buttonBox_accepted()
         QMessageBox msg;
         msg.setText("User doesn't exist!\nPlease register first.");
         msg.exec();
-        exit(0);
+
     }
 }
 
