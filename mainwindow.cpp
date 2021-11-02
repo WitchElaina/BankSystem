@@ -66,23 +66,23 @@ void MainWindow::flashuserData()
     if (accounts[DEFAULT_ACCOUNT_INDEX]->has_savings)
     {
         // user savings account balance
-        info.setNum(accounts[SAVINGS_ACCOUNT_INDEX]->getBalance());
+        info.setNum(accounts[SAVINGS_ACCOUNT_INDEX]->getBalance(),'g',2);
         ui->usr_sav_balance->setText(info);
 
         // user savings account rate
-        info.setNum(accounts[SAVINGS_ACCOUNT_INDEX]->getRate());
+        info.setNum(accounts[SAVINGS_ACCOUNT_INDEX]->getRate(),'g',2);
         ui->usr_sav_rate->setText(info);
 
         // user savings account current month income
         id_ptr=accounts[SAVINGS_ACCOUNT_INDEX]->getIDPtr();
         total_temp=accounts[SAVINGS_ACCOUNT_INDEX]->getCurMonthBillAmount(date,"deposite",id_ptr);
-        info.setNum(total_temp);
+        info.setNum(total_temp,'g',2);
         ui->usr_sav_month_income->setText(info);
         total_income=total_temp;
 
         // user savings account current month expend
         total_temp=accounts[SAVINGS_ACCOUNT_INDEX]->getCurMonthBillAmount(date,"withdraw",id_ptr);
-        info.setNum(total_temp);
+        info.setNum(total_temp,'g',2);
         ui->usr_sav_month_expend->setText(info);
         total_expend=total_temp;
 
@@ -95,27 +95,27 @@ void MainWindow::flashuserData()
     if(accounts[DEFAULT_ACCOUNT_INDEX]->has_credit)
     {
         // user credit account balance
-        info.setNum(accounts[CREDIT_ACCOUNT_INDEX]->getBalance());
+        info.setNum(accounts[CREDIT_ACCOUNT_INDEX]->getBalance(),'g',2);
         ui->usr_cre_balance->setText(info);
 
         // user credit account credit
-        info.setNum(accounts[CREDIT_ACCOUNT_INDEX]->getCredit());
+        info.setNum(accounts[CREDIT_ACCOUNT_INDEX]->getCredit(),'g',2);
         ui->usr_cre_credit->setText(info);
 
         // user credit account rate
-        info.setNum(accounts[CREDIT_ACCOUNT_INDEX]->getRate());
+        info.setNum(accounts[CREDIT_ACCOUNT_INDEX]->getRate(),'g',2);
         ui->usr_cre_rate->setText(info);
 
         // user credit account current month income
         id_ptr=accounts[CREDIT_ACCOUNT_INDEX]->getIDPtr();
         total_temp=accounts[CREDIT_ACCOUNT_INDEX]->getCurMonthBillAmount(date,"deposite",id_ptr);
-        info.setNum(total_temp);
+        info.setNum(total_temp,'g',2);
         ui->usr_cre_month_income->setText(info);
         total_income=total_temp;
 
         // user credit account current month expend
         total_temp=accounts[CREDIT_ACCOUNT_INDEX]->getCurMonthBillAmount(date,"withdraw",id_ptr);
-        info.setNum(total_temp);
+        info.setNum(total_temp,'g',2);
         ui->usr_cre_month_expend->setText(info);
         total_expend=total_temp;
 
@@ -128,15 +128,15 @@ void MainWindow::flashuserData()
     // total info
 
     // total Balance
-    info.setNum(accounts[SAVINGS_ACCOUNT_INDEX]->getTotal());
+    info.setNum(accounts[SAVINGS_ACCOUNT_INDEX]->getTotal(),'g',2);
     ui->usr_balance->setText(info);
 
     // total month expend
-    info.setNum(total_expend);
+    info.setNum(total_expend,'g',2);
     ui->month_expend->setText(info);
 
     // total month income
-    info.setNum(total_income);
+    info.setNum(total_income,'g',2);
     ui->month_income->setText(info);
 
 
@@ -227,6 +227,7 @@ void MainWindow::userInit(LogInDialog *m_login_dialog)
 
     // Recovery
 
+    try {
     while (rec)
     {
         char type;
@@ -316,6 +317,11 @@ void MainWindow::userInit(LogInDialog *m_login_dialog)
 
         }
    }
+    }
+    catch(int i)
+    {
+        qDebug()<<error_msg[i];
+    }
 
 
 
@@ -506,11 +512,17 @@ void MainWindow::on_dateEdit_userDateChanged(const QDate &qdate)
     // settle
     if(from_qdate.getMonth()!=date.getMonth()||from_qdate.getYear()!=date.getYear())
     {
+        try{
         if(accounts[DEFAULT_ACCOUNT_INDEX]->has_savings)
             accounts[SAVINGS_ACCOUNT_INDEX]->settle(from_qdate);
 
         if(accounts[DEFAULT_ACCOUNT_INDEX]->has_credit)
             accounts[CREDIT_ACCOUNT_INDEX]->settle(from_qdate);
+        }
+        catch(int i)
+        {
+            qDebug()<<error_msg[i];
+        }
 
     }
 

@@ -259,7 +259,7 @@ void SavingsAccount::withdraw(Date m_date,double m_amount,string m_desc)
     if(getBalance()+m_amount<0)
         throw 0;    // 余额不足
 
-    if(m_amount<0)
+    if(m_amount>0)
         throw 1;    // 取款数额小于0
 
     // 更新累加器
