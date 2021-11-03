@@ -1,0 +1,54 @@
+\hypertarget{logindialog_8h_source}{}\doxysection{logindialog.\+h}
+\mbox{\hyperlink{logindialog_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef LOGINDIALOG\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define LOGINDIALOG\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <QDialog>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{register_8h}{register.h}}"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}ui\_register.h"{}}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_ui}{Ui}} \{}
+\DoxyCodeLine{9 \textcolor{keyword}{class }\mbox{\hyperlink{class_log_in_dialog}{LogInDialog}};}
+\DoxyCodeLine{10 \}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{class }\mbox{\hyperlink{class_log_in_dialog}{LogInDialog}} : \textcolor{keyword}{public} QDialog}
+\DoxyCodeLine{13 \{}
+\DoxyCodeLine{14     Q\_OBJECT}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{public}:}
+\DoxyCodeLine{17     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_log_in_dialog_ae608ee28d62fdfdb4d2750e729f103d5}{LogInDialog}}(QWidget *parent = \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{18     \mbox{\hyperlink{class_log_in_dialog_afdf3ee344cffc039a4a754ea70d587c5}{\string~LogInDialog}}();}
+\DoxyCodeLine{19     QString \mbox{\hyperlink{class_log_in_dialog_a34644ff29193c72d15e7e55a8c10c655}{username}};}
+\DoxyCodeLine{20     QString \mbox{\hyperlink{class_log_in_dialog_a6a4c54411ca84c22c2e28f26de148028}{password}};}
+\DoxyCodeLine{21     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_log_in_dialog_a1f80cbb0aff6b197807b3bf6ea96c4c3}{loginStatus}}=\textcolor{keyword}{false};}
+\DoxyCodeLine{22     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_log_in_dialog_a06b58f4fc42b7ad21ceae52cff5a77d6}{loginExec}}();}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     \textcolor{comment}{// validate username}}
+\DoxyCodeLine{25     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_log_in_dialog_a4d9e856bdce9f6bbd58edccc3047b995}{findUsername}}(QString m\_usrname);}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     \textcolor{comment}{// verify password}}
+\DoxyCodeLine{28     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_log_in_dialog_a135e3743b2ed46e077c3b9948c08b9bf}{verifyPassword}}(QString m\_usrname, QString m\_password);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30     \textcolor{comment}{// login}}
+\DoxyCodeLine{31     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_log_in_dialog_aab8badf02bb6ce648f0d4edbbf2b5063}{userLogin}}(QString m\_usrname, QString m\_password);}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{keyword}{private} slots:}
+\DoxyCodeLine{35     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_log_in_dialog_aa5a22526e998ae882c38ecd316651004}{on\_userName\_textChanged}}(\textcolor{keyword}{const} QString \&arg1);}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_log_in_dialog_a8bc3156812872624c613ef0e7b7d5d0d}{on\_userPassword\_textChanged}}(\textcolor{keyword}{const} QString \&arg1);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_log_in_dialog_ab81e893aba52ce819701899085549e9c}{on\_userRegister\_clicked}}();}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_log_in_dialog_af819cd02b02f2cde81855095ec62e693}{on\_buttonBox\_accepted}}();}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_log_in_dialog_a7738375282a3cf24b81dc0dd03794f7f}{on\_buttonBox\_rejected}}();}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{keyword}{private}:}
+\DoxyCodeLine{46     Ui::LogInDialog *\mbox{\hyperlink{class_log_in_dialog_aad69aa309edf0361450bdf54440ae39e}{ui}};}
+\DoxyCodeLine{47 \};}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// LOGINDIALOG\_H}}
+
+\end{DoxyCode}

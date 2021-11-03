@@ -1,0 +1,67 @@
+\hypertarget{withdrawdialog_8h_source}{}\doxysection{withdrawdialog.\+h}
+\mbox{\hyperlink{withdrawdialog_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef WITHDRAWDIALOG\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define WITHDRAWDIALOG\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <QDialog>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <QDebug>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <QMessageBox>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{date_8h}{date.h}}"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_ui}{Ui}} \{}
+\DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{class_withdraw_dialog}{WithdrawDialog}};}
+\DoxyCodeLine{14 \}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }\mbox{\hyperlink{class_withdraw_dialog}{WithdrawDialog}} : \textcolor{keyword}{public} QDialog}
+\DoxyCodeLine{17 \{}
+\DoxyCodeLine{18     Q\_OBJECT}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{keyword}{public}:}
+\DoxyCodeLine{21     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_withdraw_dialog_a29cd7118c463baf6418c6f8d2336816e}{amount}}=0;}
+\DoxyCodeLine{22     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_withdraw_dialog_a4b505a2ecbd09b4b6b8a526c528406ec}{year}}=-\/1;}
+\DoxyCodeLine{23     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_withdraw_dialog_a7116cfe9b89d680f848cf0eee47ad2fc}{month}}=-\/1;}
+\DoxyCodeLine{24     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_withdraw_dialog_ab6bed3a41751735311015ecedb19084a}{day}}=-\/1;}
+\DoxyCodeLine{25     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_withdraw_dialog_a6c55a45779f45b7640d5ea590631d3ca}{desc}};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_withdraw_dialog_a8c391229a58a7d907f156d98c1462841}{WithdrawDialog}}(QWidget *parent = \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{28     \mbox{\hyperlink{class_withdraw_dialog_a13e13494095a97b54d6621fa55d71bc3}{\string~WithdrawDialog}}();}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32     \textcolor{comment}{//set Amount}}
+\DoxyCodeLine{33     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_withdraw_dialog_a902e371d85053e660bb9dd66771445e9}{setAmount}}();}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35     \textcolor{comment}{//set description}}
+\DoxyCodeLine{36     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_withdraw_dialog_a4a127995014a67bcb5bd12cb9d06cda2}{setDesc}}();}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38     \textcolor{comment}{// input verify}}
+\DoxyCodeLine{39     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_withdraw_dialog_ab0441b642c9e84c447279ec64fe8ebf8}{verifyInput}}();}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41     \textcolor{comment}{// set Date}}
+\DoxyCodeLine{42     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_withdraw_dialog_a96957031ef72320a6b15070940668ad3}{setDate}}(\mbox{\hyperlink{class_date}{Date}} m\_date);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{keyword}{private} slots:}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_withdraw_dialog_aecf68377711c80f546f86fccd4a11509}{on\_year\_input\_textChanged}}(\textcolor{keyword}{const} QString \&arg1);}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_withdraw_dialog_ae0d2593ee19e5d270bb6387749dfc1af}{on\_month\_input\_textChanged}}(\textcolor{keyword}{const} QString \&arg1);}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_withdraw_dialog_ae5685aed7254388d8fe30c2a428f9ab1}{on\_day\_input\_textChanged}}(\textcolor{keyword}{const} QString \&arg1);}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_withdraw_dialog_ac9b748c3bca186b4ad0d6afa235ed37a}{on\_amount\_input\_textChanged}}(\textcolor{keyword}{const} QString \&arg1);}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_withdraw_dialog_a9aef74de9dd91cf66684f1ad5d9f4f01}{on\_desc\_input\_textChanged}}(\textcolor{keyword}{const} QString \&arg1);}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_withdraw_dialog_ad93fcdb81fc4840c8a1b942143c1e14a}{on\_buttonBox\_accepted}}();}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{keyword}{private}:}
+\DoxyCodeLine{59     Ui::WithdrawDialog *\mbox{\hyperlink{class_withdraw_dialog_a93e715eed21c015983dd9bcd8f4c0abb}{ui}};}
+\DoxyCodeLine{60 \};}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// WITHDRAWDIALOG\_H}}
+
+\end{DoxyCode}

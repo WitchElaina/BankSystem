@@ -435,6 +435,7 @@ void CreditAccount::withdraw(Date m_date,double m_amount,string m_desc)
 // 结算函数
 void CreditAccount::settle(Date m_date)
 {
+
     // 利息
     double interest;
 
@@ -447,7 +448,8 @@ void CreditAccount::settle(Date m_date)
     // 计算总存款时间
 
     // 计算利息
-    interest=set_precision_2(acc.getSum(m_date)*rate);
+    if(interest)
+        interest=set_precision_2(acc.getSum(m_date)*rate);
     withdraw(m_date, -interest, "interest");
     
     // 判断是否需要交年费

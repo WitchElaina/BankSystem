@@ -1,0 +1,123 @@
+\hypertarget{mainwindow_8cpp}{}\doxysection{mainwindow.\+cpp File Reference}
+\label{mainwindow_8cpp}\index{mainwindow.cpp@{mainwindow.cpp}}
+{\ttfamily \#include \char`\"{}mainwindow.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ui\+\_\+mainwindow.\+h\char`\"{}}\newline
+Include dependency graph for mainwindow.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mainwindow_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structdeleter}{deleter}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+QString \mbox{\hyperlink{mainwindow_8cpp_acb7d99873b3ca2e0795f06ce822ef924}{error\+\_\+msg}} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{class_date}{Date}} \mbox{\hyperlink{mainwindow_8cpp_ad17e63ea0140a942188de6a0849f721d}{date}} (2008, 11, 1)
+\item 
+vector$<$ \mbox{\hyperlink{class_account}{Account}} $\ast$ $>$ \mbox{\hyperlink{mainwindow_8cpp_ab97367066d60cbaf01944a43dbc75fc3}{accounts}}
+\item 
+\mbox{\hyperlink{class_account}{Account}} $\ast$ \mbox{\hyperlink{mainwindow_8cpp_ac7d25519b388ba593fa20a65c9d8519d}{default\+\_\+account}} =new \mbox{\hyperlink{class_savings_account}{Savings\+Account}} (\mbox{\hyperlink{mainwindow_8cpp_ad17e63ea0140a942188de6a0849f721d}{date}},\char`\"{}dafault\+\_\+account\char`\"{},0)
+\item 
+\mbox{\hyperlink{class_command_translator}{Command\+Translator}} \mbox{\hyperlink{mainwindow_8cpp_add0cb6fe09873e2f80bc6edd9a732563}{cmd\+\_\+translator}}
+\item 
+double \mbox{\hyperlink{mainwindow_8cpp_a3cb5877abc0b1a2efd79f4f2124fc6e4}{total\+\_\+income}} =0
+\item 
+double \mbox{\hyperlink{mainwindow_8cpp_af52b0c69bbc7e925defe5fcbd1f26e85}{total\+\_\+expend}} =0
+\item 
+double \mbox{\hyperlink{mainwindow_8cpp_a1da191f08a6aed265696d18c2fa32373}{total\+\_\+temp}} =0
+\item 
+QDate \mbox{\hyperlink{mainwindow_8cpp_a19e9bd65d6f8af2d4fa86f32a16df5be}{qdate\+\_\+temp}}
+\item 
+multimap$<$ \mbox{\hyperlink{class_date}{Date}}, QString $>$ \mbox{\hyperlink{mainwindow_8cpp_a2ed0f4b267779e3b9a45e8f735c23186}{date\+\_\+append\+\_\+temp}}
+\item 
+multimap$<$ double, QString $>$ \mbox{\hyperlink{mainwindow_8cpp_a79a5071a9690a8510a6df33f1909e3ce}{balance\+\_\+append\+\_\+temp}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{mainwindow_8cpp_ab97367066d60cbaf01944a43dbc75fc3}\label{mainwindow_8cpp_ab97367066d60cbaf01944a43dbc75fc3}} 
+\index{mainwindow.cpp@{mainwindow.cpp}!accounts@{accounts}}
+\index{accounts@{accounts}!mainwindow.cpp@{mainwindow.cpp}}
+\doxysubsubsection{\texorpdfstring{accounts}{accounts}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{class_account}{Account}} $\ast$$>$ accounts}
+
+\mbox{\Hypertarget{mainwindow_8cpp_a79a5071a9690a8510a6df33f1909e3ce}\label{mainwindow_8cpp_a79a5071a9690a8510a6df33f1909e3ce}} 
+\index{mainwindow.cpp@{mainwindow.cpp}!balance\_append\_temp@{balance\_append\_temp}}
+\index{balance\_append\_temp@{balance\_append\_temp}!mainwindow.cpp@{mainwindow.cpp}}
+\doxysubsubsection{\texorpdfstring{balance\_append\_temp}{balance\_append\_temp}}
+{\footnotesize\ttfamily multimap$<$double,QString$>$ balance\+\_\+append\+\_\+temp}
+
+\mbox{\Hypertarget{mainwindow_8cpp_add0cb6fe09873e2f80bc6edd9a732563}\label{mainwindow_8cpp_add0cb6fe09873e2f80bc6edd9a732563}} 
+\index{mainwindow.cpp@{mainwindow.cpp}!cmd\_translator@{cmd\_translator}}
+\index{cmd\_translator@{cmd\_translator}!mainwindow.cpp@{mainwindow.cpp}}
+\doxysubsubsection{\texorpdfstring{cmd\_translator}{cmd\_translator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_command_translator}{Command\+Translator}} cmd\+\_\+translator}
+
+\mbox{\Hypertarget{mainwindow_8cpp_ad17e63ea0140a942188de6a0849f721d}\label{mainwindow_8cpp_ad17e63ea0140a942188de6a0849f721d}} 
+\index{mainwindow.cpp@{mainwindow.cpp}!date@{date}}
+\index{date@{date}!mainwindow.cpp@{mainwindow.cpp}}
+\doxysubsubsection{\texorpdfstring{date}{date}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_date}{Date}} date(2008, 11, 1) (\begin{DoxyParamCaption}\item[{2008}]{,  }\item[{11}]{,  }\item[{1}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{mainwindow_8cpp_a2ed0f4b267779e3b9a45e8f735c23186}\label{mainwindow_8cpp_a2ed0f4b267779e3b9a45e8f735c23186}} 
+\index{mainwindow.cpp@{mainwindow.cpp}!date\_append\_temp@{date\_append\_temp}}
+\index{date\_append\_temp@{date\_append\_temp}!mainwindow.cpp@{mainwindow.cpp}}
+\doxysubsubsection{\texorpdfstring{date\_append\_temp}{date\_append\_temp}}
+{\footnotesize\ttfamily multimap$<$\mbox{\hyperlink{class_date}{Date}},QString$>$ date\+\_\+append\+\_\+temp}
+
+\mbox{\Hypertarget{mainwindow_8cpp_ac7d25519b388ba593fa20a65c9d8519d}\label{mainwindow_8cpp_ac7d25519b388ba593fa20a65c9d8519d}} 
+\index{mainwindow.cpp@{mainwindow.cpp}!default\_account@{default\_account}}
+\index{default\_account@{default\_account}!mainwindow.cpp@{mainwindow.cpp}}
+\doxysubsubsection{\texorpdfstring{default\_account}{default\_account}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_account}{Account}}$\ast$ default\+\_\+account =new \mbox{\hyperlink{class_savings_account}{Savings\+Account}} (\mbox{\hyperlink{mainwindow_8cpp_ad17e63ea0140a942188de6a0849f721d}{date}},\char`\"{}dafault\+\_\+account\char`\"{},0)}
+
+\mbox{\Hypertarget{mainwindow_8cpp_acb7d99873b3ca2e0795f06ce822ef924}\label{mainwindow_8cpp_acb7d99873b3ca2e0795f06ce822ef924}} 
+\index{mainwindow.cpp@{mainwindow.cpp}!error\_msg@{error\_msg}}
+\index{error\_msg@{error\_msg}!mainwindow.cpp@{mainwindow.cpp}}
+\doxysubsubsection{\texorpdfstring{error\_msg}{error\_msg}}
+{\footnotesize\ttfamily QString error\+\_\+msg\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}Error 0: 余额不足!"{}},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}Error 1: 取款数额小于0"{}},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}Error 2: 存款数额小于0"{}},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}Error 3: 还款数额小于0"{}},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}Error 4: 消费数额小于0"{}},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}Error 5: 额度不足"{}}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mainwindow_8cpp_a19e9bd65d6f8af2d4fa86f32a16df5be}\label{mainwindow_8cpp_a19e9bd65d6f8af2d4fa86f32a16df5be}} 
+\index{mainwindow.cpp@{mainwindow.cpp}!qdate\_temp@{qdate\_temp}}
+\index{qdate\_temp@{qdate\_temp}!mainwindow.cpp@{mainwindow.cpp}}
+\doxysubsubsection{\texorpdfstring{qdate\_temp}{qdate\_temp}}
+{\footnotesize\ttfamily QDate qdate\+\_\+temp}
+
+\mbox{\Hypertarget{mainwindow_8cpp_af52b0c69bbc7e925defe5fcbd1f26e85}\label{mainwindow_8cpp_af52b0c69bbc7e925defe5fcbd1f26e85}} 
+\index{mainwindow.cpp@{mainwindow.cpp}!total\_expend@{total\_expend}}
+\index{total\_expend@{total\_expend}!mainwindow.cpp@{mainwindow.cpp}}
+\doxysubsubsection{\texorpdfstring{total\_expend}{total\_expend}}
+{\footnotesize\ttfamily double total\+\_\+expend =0}
+
+\mbox{\Hypertarget{mainwindow_8cpp_a3cb5877abc0b1a2efd79f4f2124fc6e4}\label{mainwindow_8cpp_a3cb5877abc0b1a2efd79f4f2124fc6e4}} 
+\index{mainwindow.cpp@{mainwindow.cpp}!total\_income@{total\_income}}
+\index{total\_income@{total\_income}!mainwindow.cpp@{mainwindow.cpp}}
+\doxysubsubsection{\texorpdfstring{total\_income}{total\_income}}
+{\footnotesize\ttfamily double total\+\_\+income =0}
+
+\mbox{\Hypertarget{mainwindow_8cpp_a1da191f08a6aed265696d18c2fa32373}\label{mainwindow_8cpp_a1da191f08a6aed265696d18c2fa32373}} 
+\index{mainwindow.cpp@{mainwindow.cpp}!total\_temp@{total\_temp}}
+\index{total\_temp@{total\_temp}!mainwindow.cpp@{mainwindow.cpp}}
+\doxysubsubsection{\texorpdfstring{total\_temp}{total\_temp}}
+{\footnotesize\ttfamily double total\+\_\+temp =0}
+

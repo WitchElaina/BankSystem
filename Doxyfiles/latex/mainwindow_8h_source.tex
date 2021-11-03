@@ -1,0 +1,90 @@
+\hypertarget{mainwindow_8h_source}{}\doxysection{mainwindow.\+h}
+\mbox{\hyperlink{mainwindow_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef MAINWINDOW\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define MAINWINDOW\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <QMainWindow>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{logindialog_8h}{logindialog.h}}"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}ui\_logindialog.h"{}}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{createsavaccountdialog_8h}{createsavaccountdialog.h}}"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}ui\_createsavaccountdialog.h"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{createcreaccountdialog_8h}{createcreaccountdialog.h}}"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}ui\_createcreaccountdialog.h"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{querydialog_8h}{querydialog.h}}"{}}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}ui\_querydialog.h"{}}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{account_8h}{account.h}}"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{commandtranslator_8h}{commandtranslator.h}}"{}}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <QFile>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <QDebug>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <QMessageBox>}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <QDate>}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 QT\_BEGIN\_NAMESPACE}
+\DoxyCodeLine{33 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_ui}{Ui}} \{ \textcolor{keyword}{class }\mbox{\hyperlink{class_main_window}{MainWindow}}; \}}
+\DoxyCodeLine{34 QT\_END\_NAMESPACE}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{keyword}{class }\mbox{\hyperlink{class_main_window}{MainWindow}} : \textcolor{keyword}{public} QMainWindow}
+\DoxyCodeLine{37 \{}
+\DoxyCodeLine{38     Q\_OBJECT}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{keyword}{public}:}
+\DoxyCodeLine{41     \mbox{\hyperlink{class_main_window_a996c5a2b6f77944776856f08ec30858d}{MainWindow}}(QWidget *parent = \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{42     \mbox{\hyperlink{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}{\string~MainWindow}}();}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \textcolor{comment}{// show messagebox with custom string}}
+\DoxyCodeLine{45     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_main_window_aa4da03326b13249d949ae04d966ceb9a}{showMessageBox}}(QString m\_msg);}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47     \textcolor{comment}{// initialize user data}}
+\DoxyCodeLine{48     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_main_window_aa7253465d36a24d4a8f6b57785e120cd}{userInit}}(\mbox{\hyperlink{class_log_in_dialog}{LogInDialog}} *m\_login\_dialog);}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     \textcolor{comment}{// flash data throw commmand lines}}
+\DoxyCodeLine{51     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_main_window_a00a9d247473e66d4d46a076af498963b}{flashuserData}}();}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53     \textcolor{comment}{// flash GUI}}
+\DoxyCodeLine{54     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_main_window_a2112fb7863674052d78a053da52f5c2b}{flashGUI}}();}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{keyword}{private} slots:}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_main_window_abf75c6b5fe8f8d6c3dffc0c2f84b240d}{on\_pushButton\_logout\_clicked}}();}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_main_window_a4fd96f3aab2bb871f5c869382bc4fe70}{on\_pushButton\_sav\_deposite\_clicked}}();}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_main_window_ac08f230aab53c936ef2b45f8416eab02}{on\_pushButton\_sav\_withdraw\_clicked}}();}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_main_window_a64a3156a70909470beee52aad801ed86}{on\_pushButton\_cre\_deposite\_clicked}}();}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_main_window_a9b4a0f0ebd7a570fb8cf3e4597e715b9}{on\_pushButton\_cre\_withdraw\_clicked}}();}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_main_window_a26643ac3c23b145576545f66ca432362}{on\_pushButton\_create\_credit\_account\_clicked}}();}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_main_window_ae38e70c84a87230ae346ecb295a8ed83}{on\_pushButton\_create\_savings\_acount\_clicked}}();}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_main_window_a16c59e49b4dc22528edaae7a28161de2}{on\_dateEdit\_userDateChanged}}(\textcolor{keyword}{const} QDate \&\mbox{\hyperlink{mainwindow_8cpp_ad17e63ea0140a942188de6a0849f721d}{date}});}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_main_window_a5016b0159ba53d1014c629fbdb013b53}{on\_pushButton\_print\_record\_clicked}}();}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_main_window_a9d126df052da9d8a3df4047c1b31b83f}{on\_pushButton\_change\_password\_pressed}}();}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_main_window_aed89d82d7144f3f13e7592ab7fc7ae08}{on\_pushButton\_change\_password\_released}}();}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{keyword}{private}:}
+\DoxyCodeLine{83     Ui::MainWindow *\mbox{\hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}};}
+\DoxyCodeLine{84 \};}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// MAINWINDOW\_H}}
+
+\end{DoxyCode}

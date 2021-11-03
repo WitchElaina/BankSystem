@@ -304,7 +304,11 @@ void MainWindow::userInit(LogInDialog *m_login_dialog)
 
             case 'j'://new cmd, jump to specific date
                 usr_cmd >> year >> month >> day;
-                date.resetDate(QDate(year,month,day));
+                if(year==date.getYear()&&month==date.getMonth())
+                {
+                    date.resetDate(QDate(year,month,day));
+                    break;
+                }
                 for (vector<Account*>::iterator iter = accounts.begin(); iter != accounts.end(); ++iter)
                     (*iter)->settle(date);
                 break;
@@ -509,7 +513,7 @@ void MainWindow::on_dateEdit_userDateChanged(const QDate &qdate)
 
 
     // settle
-    if(from_qdate.getMonth()!=date.getMonth()||from_qdate.getYear()!=date.getYear())
+    if(!(from_qdate.getMonth()==date.getMonth()&&from_qdate.getYear()==date.getYear()))
     {
         try{
         if(accounts[DEFAULT_ACCOUNT_INDEX]->has_savings)
@@ -538,30 +542,38 @@ void MainWindow::on_dateEdit_userDateChanged(const QDate &qdate)
 
 void MainWindow::on_pushButton_print_record_clicked()
 {
+    // 新建窗口让用户输入查询流水的年月
     QueryDialog *query_window=new QueryDialog;
+    // 将窗口默认时间设置为当前的年月
     query_window->query_date.setDate(date.getYear(),date.getMonth(),1);
     query_window->setDefaultDateToSystemDate();
     query_window->exec();
+    // 清楚先前文本处理流中的缓存信息
     ui->queryResult->clear();
+    // 打印标头
     ui->queryResult->append("Date\tAmount\tBalance\tDescripiton");
+    // 清除按日期排序multimap中缓存的内容
     date_append_temp.clear();
+    // 清除按数额排序multimap中缓存的内容
     balance_append_temp.clear();
     qDebug()<<QString((ui->comboBox_select_rec_type->currentIndex()));
+
     if(ui->comboBox_select_rec_type->currentIndex()<=1)
     {
         accounts[ui->comboBox_select_rec_type->currentIndex()]->queryGUI(query_window->query_date,date_append_temp,balance_append_temp);
     }
     else
-    {
+    { 
         accounts[SAVINGS_ACCOUNT_INDEX]->queryGUI(query_window->query_date,date_append_temp,balance_append_temp);
         accounts[CREDIT_ACCOUNT_INDEX]->queryGUI(query_window->query_date,date_append_temp,balance_append_temp);
     }
 
     // sort
+    // 读取comboBox控件中用户选择的排序种类
     if(ui->comboBox->currentIndex()==0)
     {
 
-        // sort by time
+        // sort by time时间排序
         multimap<Date,QString>::iterator it;
         for(it=date_append_temp.begin();it!=date_append_temp.end();it++)
             ui->queryResult->append(it->second);
@@ -569,7 +581,7 @@ void MainWindow::on_pushButton_print_record_clicked()
     }
     else
     {
-        // sort by amount
+        // sort by amount数额排序
         multimap<double,QString>::iterator it;
         for(it=balance_append_temp.begin();it!=balance_append_temp.end();it++)
             ui->queryResult->append(it->second);

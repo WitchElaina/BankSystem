@@ -1,0 +1,44 @@
+\hypertarget{createsavaccountdialog_8h_source}{}\doxysection{createsavaccountdialog.\+h}
+\mbox{\hyperlink{createsavaccountdialog_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef CREATESAVACCOUNTDIALOG\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define CREATESAVACCOUNTDIALOG\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <QDialog>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <QDebug>}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_ui}{Ui}} \{}
+\DoxyCodeLine{8 \textcolor{keyword}{class }\mbox{\hyperlink{class_create_sav_account_dialog}{CreateSavAccountDialog}};}
+\DoxyCodeLine{9 \}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{class }\mbox{\hyperlink{class_create_sav_account_dialog}{CreateSavAccountDialog}} : \textcolor{keyword}{public} QDialog}
+\DoxyCodeLine{12 \{}
+\DoxyCodeLine{13     Q\_OBJECT}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{public}:}
+\DoxyCodeLine{16     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_create_sav_account_dialog_a9f7ed22d63ff4d8c55aa28acc5e1bd03}{CreateSavAccountDialog}}(QWidget *parent = \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{17     \mbox{\hyperlink{class_create_sav_account_dialog_a8ab575a66aaf7dd590631f3510644e2e}{\string~CreateSavAccountDialog}}();}
+\DoxyCodeLine{18     QString \mbox{\hyperlink{class_create_sav_account_dialog_a4fcc811a31be2ca1303756046b06fa5d}{username}};}
+\DoxyCodeLine{19     QString \mbox{\hyperlink{class_create_sav_account_dialog_a271d086e61a3d49ef11135de8ce74f53}{account\_name}};}
+\DoxyCodeLine{20     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_create_sav_account_dialog_a94de848b95b0d00ad32adcd877df5c7d}{rate}};}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22     \textcolor{comment}{// validat input}}
+\DoxyCodeLine{23     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_create_sav_account_dialog_aa9867b78c938d8c8810296efa3aadb3b}{verifyInput}}();}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25     \textcolor{comment}{// show username}}
+\DoxyCodeLine{26     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_create_sav_account_dialog_a6bb05e1d4db404485eb9054aa61ac292}{showUsername}}(QString m\_username);}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{keyword}{private} slots:}
+\DoxyCodeLine{29     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_create_sav_account_dialog_a41111b72793a25d3d1bab1b4a4300276}{on\_lineEdit\_account\_name\_textChanged}}(\textcolor{keyword}{const} QString \&arg1);}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_create_sav_account_dialog_af4b353af0ce12f3f0e6fdf857d2b2467}{on\_lineEdit\_rate\_windowIconTextChanged}}(\textcolor{keyword}{const} QString \&iconText);}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_create_sav_account_dialog_ac167592efa4a314f189780062e36ca37}{on\_lineEdit\_rate\_textChanged}}(\textcolor{keyword}{const} QString \&arg1);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{keyword}{private}:}
+\DoxyCodeLine{36     Ui::CreateSavAccountDialog *\mbox{\hyperlink{class_create_sav_account_dialog_aeb3b0d55d62976c9f9d3fcc7d7b4d1c0}{ui}};}
+\DoxyCodeLine{37 \};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// CREATESAVACCOUNTDIALOG\_H}}
+
+\end{DoxyCode}
